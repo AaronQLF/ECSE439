@@ -1,172 +1,63 @@
 
-Task Rules: 
-	IF
-		
-			
-				>= 200 min
-			
-			
-		
-		
-	THEN
-		SENIOR
+<p>Task Rules:</p> 
+	IF >= 200 min
 	
-	
+	 THEN SENIOR
+<br/>	IF (> 100 min
 
-	IF
-		
-			
-			(
-				
-					> 100 min
-				
-				
-			
-			 OR 
-			 	
-			 	MODERATE
-			 	
-			 
-			 )
-			
-			
-		
-		
-	THEN
-		JUNIOR
-	
-	
+ OR MODERATE
+ )
+ THEN JUNIOR
+<br/>	IF (EASY
+ AND (< 100 min
+ 
+  OR DAYSHIFT
+  )
+ )
+ THEN TRAINEE
+<br/>	IF (((EASY
+ AND >= 100 min
+ 
+ )
+ OR ((MODERATE
+  AND > 90 min
+  
+  )
+  AND (MODERATE
+   AND < 180 min
+   
+   )
+  )
+ )
+ OR (HARD
+  AND DAYSHIFT
+  )
+ )
+ THEN JUNIOR
 
-	IF
-		
-			
-			(
-				
-				EASY
-				
-			
-			 AND 
-			 	
-			 	(
-			 		
-			 			< 100 min
-			 		
-			 		
-			 	
-			 	 OR 
-			 	 		
-			 	 	DAYSHIFT
-			 	 	
-			 	 
-			 	 )
-			 	
-			 	
-			 
-			 )
-			
-			
-		
-		
-	THEN
-		TRAINEE
-	
-	
+<p>Filtering the Task Rules:</p>
+<select name="filter" onchange="filterTaskRules()">
+    <option value="ALL">All</option>
+    <option value="SENIOR">Senior</option>
+    <option value="JUNIOR">Junior</option>
+    <option value="TRAINEE">Trainee</option>
+    <option value="DAYSHIFT">Day Shift</option>
+    <option value="EVENINGSHIFT">Evening Shift</option>
+    <option value="NIGHTSHIFT">Night Shift</option>
+</select>
 
-	IF
-		
-			
-			(
-				
-				(
-					
-					(
-						
-						EASY
-						
-					
-					 AND 
-					 	
-					 		>= 100 min
-					 	
-					 	
-					 
-					 )
-					
-					
-				
-				 OR 
-				 	
-				 	(
-				 		
-				 		(
-				 			
-				 			MODERATE
-				 			
-				 		
-				 		 AND 
-				 		 	
-				 		 		> 90 min
-				 		 	
-				 		 	
-				 		 
-				 		 )
-				 		
-				 		
-				 	
-				 	 AND 
-				 	 	
-				 	 	(
-				 	 		
-				 	 		MODERATE
-				 	 		
-				 	 	
-				 	 	 AND 
-				 	 	 	
-				 	 	 		< 180 min
-				 	 	 	
-				 	 	 	
-				 	 	 
-				 	 	 )
-				 	 	
-				 	 	
-				 	 
-				 	 )
-				 	
-				 	
-				 
-				 )
-				
-				
-			
-			 OR 
-			 	
-			 	(
-			 		
-			 		HARD
-			 		
-			 	
-			 	 AND 
-			 	 		
-			 	 	DAYSHIFT
-			 	 	
-			 	 
-			 	 )
-			 	
-			 	
-			 
-			 )
-			
-			
-		
-		
-	THEN
-		JUNIOR
-	
-	
+<script>
+function containsShiftExpression(expression) {
+    if (expression.type === 'ShiftExpression') {
+        return true;
+    } else if (expression.type === 'CompoundExpression') {
+        return containsShiftExpression(expression.LHS) || containsShiftExpression(expression.RHS);
+    }
+    return false;
+}
 
-Filtering the Task Rules:
+function filterTaskRules() {
+    const filter = document.getElementsByName('filter')
 
-
-
-Task Assignment:
+<p>Task Assignment:</p>
 	

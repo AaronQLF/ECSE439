@@ -8,143 +8,84 @@
 [comment @main/]
 [file('tps.html', false, 'UTF-8')]
 
-Task Rules: 
-[for (aRule : TaskRule | aTPS.taskRules) separator('\n')]
+<p>Task Rules:</p> 
+[for (aRule : TaskRule | aTPS.taskRules) separator('<br/>')]
 	[taskRule(aRule)/]
 [/for]
 
-Filtering the Task Rules:
+<p>Filtering the Task Rules:</p>
 [dropdownMenu(aTPS)/]
 
-Task Assignment:
+<p>Task Assignment:</p>
 	
 [/file]
 [/template]
 
 [template public taskRule(aRule : TaskRule)]
-IF
-	[expression(aRule.expression)/]
-THEN
-	[aRule.result/]
-
-
+IF [expression(aRule.expression)/] THEN [aRule.result/]
 [/template]
 
 [template public expression(anExpression : Expression)]
-
 [if (anExpression.oclIsTypeOf(DifficultyExpression))]
-	[difficultyExpression(anExpression.oclAsType(DifficultyExpression))/]
+[difficultyExpression(anExpression.oclAsType(DifficultyExpression))/]
 [elseif (anExpression.oclIsTypeOf(ShiftExpression))]
-	[shiftExpression(anExpression.oclAsType(ShiftExpression))/]
+[shiftExpression(anExpression.oclAsType(ShiftExpression))/]
 [elseif (anExpression.oclIsTypeOf(DurationExpression))]
-	[durationExpression(anExpression.oclAsType(DurationExpression))/]
+[durationExpression(anExpression.oclAsType(DurationExpression))/]
 [elseif (anExpression.oclIsTypeOf(CompoundExpression))]
-	[compoundExpression(anExpression.oclAsType(CompoundExpression))/]
+[compoundExpression(anExpression.oclAsType(CompoundExpression))/]
 [else]
-	[atomicExpression(anExpression.oclAsType(AtomicExpression))/]
-
+[atomicExpression(anExpression.oclAsType(AtomicExpression))/]
 [/if]
-
 [/template]
 
 [template public atomicExpression(anAtomic : AtomicExpression)]
-
 [if (anAtomic.oclIsTypeOf(DifficultyExpression))]
-	[difficultyExpression(anAtomic.oclAsType(DifficultyExpression))/]
+[difficultyExpression(anAtomic.oclAsType(DifficultyExpression))/]
 [elseif (anAtomic.oclIsTypeOf(ShiftExpression))]
-	[shiftExpression(anAtomic.oclAsType(ShiftExpression))/]
+[shiftExpression(anAtomic.oclAsType(ShiftExpression))/]
 [else]
-	[durationExpression(anAtomic.oclAsType(DurationExpression))/]
+[durationExpression(anAtomic.oclAsType(DurationExpression))/]
 [/if]
-
 [/template]
 
 [template public difficultyExpression(aDifficulty : DifficultyExpression)]
-
 [aDifficulty.difficulty/]
-
 [/template]
 
 [template public shiftExpression(aShift : ShiftExpression)]
-	
 [aShift.shift/]
-
 [/template]
 
 [template public durationExpression(aDuration : DurationExpression)]
-
 [if aDuration.operator = ComparisonOperator :: LESSTHAN]
-	< [aDuration.minutes/] min
+< [aDuration.minutes/] min
 [elseif aDuration.operator = ComparisonOperator :: LESSTHANOREQUAL]
-	<= [aDuration.minutes/] min
+<= [aDuration.minutes/] min
 [elseif aDuration.operator = ComparisonOperator :: EQUAL]
-	= [aDuration.minutes/] min
+= [aDuration.minutes/] min
 [elseif aDuration.operator = ComparisonOperator :: GREATERTHANOREQUAL]
-	>= [aDuration.minutes/] min
+>= [aDuration.minutes/] min
 [else]
-	> [aDuration.minutes/] min
+> [aDuration.minutes/] min
 [/if]
-
 [/template]
 
 [template public compoundExpression(aCompound : CompoundExpression)]
-
 ([expression(aCompound.LHS)/] [aCompound.operator/] [expression(aCompound.RHS)/])
-
-
 [/template]
 
 
 [template public dropdownMenu(aTPS : TPS)]
-
-
-[/template]
-
-[template public filterTaskRulesByResult(tps : TPS)]
-[let seniorRules : OrderedSet(TaskRule) = tps.taskRules->select(taskRule | taskRule.result = SeniorityLevel::SENIOR)]
-[let juniorRules : OrderedSet(TaskRule) = tps.taskRules->select(taskRule | taskRule.result = SeniorityLevel::JUNIOR)]
-[let traineeRules : OrderedSet(TaskRule) = tps.taskRules->select(taskRule | taskRule.result = SeniorityLevel::TRAINEE)]
-
-
-[for (taskRule : TaskRule | seniorRules) separator('\n')]
-	[taskRule/]	
-[/for]
-
-[for (taskRule : TaskRule | juniorRules) separator('\n')]
-	[taskRule/]
-[/for]
-
-[for (taskRule : TaskRule | traineeRules) separator('\n')]
-	[taskRule/]
-[/for]
-
-[/let]
-[/let]
-[/let]
+<select name="filter" onchange="filterTaskRules()">
+    <option value="ALL">All</option>
+    <option value="SENIOR">Senior</option>
+    <option value="JUNIOR">Junior</option>
+    <option value="TRAINEE">Trainee</option>
+    <option value="DAYSHIFT">Day Shift</option>
+    <option value="EVENINGSHIFT">Evening Shift</option>
+    <option value="NIGHTSHIFT">Night Shift</option>
+</select>
 
 [/template]
 
-[template public filterTaskRulesByShift(tps : TPS)]
-[let dayShiftRules : OrderedSet(TaskRule) = tps.taskRules->select(taskRule | taskRule.expression.oclIsTypeOf(ShiftExpression) and 
-taskRule.expression.oclAsType(ShiftExpression).shift = Shift::DAYSHIFT)]
-[let eveningShiftRules : OrderedSet(TaskRule) = tps.taskRules->select(taskRule | taskRule.expression.oclIsTypeOf(ShiftExpression) and 
-taskRule.expression.oclAsType(ShiftExpression).shift = Shift::EVENINGSHIFT)]
-[let nightShiftRules : OrderedSet(TaskRule) = tps.taskRules->select(taskRule | taskRule.expression.oclIsTypeOf(ShiftExpression) and 
-taskRule.expression.oclAsType(ShiftExpression).shift = Shift::NIGHTSHIFT)]
-
-[for (taskRule : TaskRule | dayShiftRules) separator('\n')]
-	[taskRule/]
-[/for]
-
-[for (taskRule : TaskRule | eveningShiftRules) separator('\n')]
-	[taskRule/]
-[/for]
-
-[for (taskRule : TaskRule | nightShiftRules) separator('\n')]
-	[taskRule/]
-[/for]
-
-[/let]
-[/let]
-[/let]
-[/template]
