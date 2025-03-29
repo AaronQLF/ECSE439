@@ -8,12 +8,7 @@
 [comment @main/]
 [file('tps.html', false, 'UTF-8')]
 
-<p>Task Rules:</p> 
-[for (aRule : TaskRule | aTPS.taskRules) separator('<br/>')]
-	[taskRule(aRule)/]
-[/for]
-
-<p>Filtering the Task Rules:</p>
+<p>Task Rules:</p>
 [dropdownMenu(aTPS)/]
 
 <p>Task Assignment:</p>
@@ -77,8 +72,8 @@ IF [expression(aRule.expression)/] THEN [aRule.result/]
 
 
 [template public dropdownMenu(aTPS : TPS)]
-<select name="filter" onchange="filterTaskRules()">
-    <option value="ALL">All</option>
+<select name="filter" id="filter" onchange="filterTaskRules()">
+	<option value="ALL">All</option>
     <option value="SENIOR">Senior</option>
     <option value="JUNIOR">Junior</option>
     <option value="TRAINEE">Trainee</option>
@@ -87,5 +82,37 @@ IF [expression(aRule.expression)/] THEN [aRule.result/]
     <option value="NIGHTSHIFT">Night Shift</option>
 </select>
 
+<div id="taskRules">
+[for (aRule : TaskRule | aTPS.taskRules)]
+    <div class="taskRule" 
+         data-result="[aRule.result/]" 
+         data-shift="[extractShift(aRule.expression).trim()/]">
+        [taskRule(aRule)/]
+    </div>
+[/for]
+</div>
+
+<script>
+function filterTaskRules() {
+    const filter = document.getElementById('filter').value;
+	console.log('Selected filter:', filter);
+    const taskRules = document.querySelectorAll('.taskRule');
+    taskRules.forEach(rule => {
+        const result = rule.getAttribute('data-result');
+        const shift = rule.getAttribute('data-shift');
+        if (filter === "ALL" ||result === filter || shift === filter) {
+            rule.style.display = 'block';
+        } else {
+            rule.style.display = 'none';
+        }
+    });
+}
+</script>
+[/template]
+
+[template public extractShift(anExpression : Expression)]
+[if (anExpression.oclIsTypeOf(ShiftExpression))][anExpression.oclAsType(ShiftExpression).shift.toString().trim()/]
+[elseif (anExpression.oclIsTypeOf(CompoundExpression))][extractShift(anExpression.oclAsType(CompoundExpression).LHS)/][extractShift(anExpression.oclAsType(CompoundExpression).RHS)/]
+[/if]
 [/template]
 

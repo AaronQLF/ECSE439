@@ -1,43 +1,7 @@
 
-<p>Task Rules:</p> 
-	IF >= 200 min
-	
-	 THEN SENIOR
-<br/>	IF (> 100 min
-
- OR MODERATE
- )
- THEN JUNIOR
-<br/>	IF (EASY
- AND (< 100 min
- 
-  OR DAYSHIFT
-  )
- )
- THEN TRAINEE
-<br/>	IF (((EASY
- AND >= 100 min
- 
- )
- OR ((MODERATE
-  AND > 90 min
-  
-  )
-  AND (MODERATE
-   AND < 180 min
-   
-   )
-  )
- )
- OR (HARD
-  AND DAYSHIFT
-  )
- )
- THEN JUNIOR
-
-<p>Filtering the Task Rules:</p>
-<select name="filter" onchange="filterTaskRules()">
-    <option value="ALL">All</option>
+<p>Task Rules:</p>
+<select name="filter" id="filter" onchange="filterTaskRules()">
+	<option value="ALL">All</option>
     <option value="SENIOR">Senior</option>
     <option value="JUNIOR">Junior</option>
     <option value="TRAINEE">Trainee</option>
@@ -46,18 +10,75 @@
     <option value="NIGHTSHIFT">Night Shift</option>
 </select>
 
-<script>
-function containsShiftExpression(expression) {
-    if (expression.type === 'ShiftExpression') {
-        return true;
-    } else if (expression.type === 'CompoundExpression') {
-        return containsShiftExpression(expression.LHS) || containsShiftExpression(expression.RHS);
-    }
-    return false;
-}
+<div id="taskRules">
+    <div class="taskRule" 
+         data-result="SENIOR" 
+         data-shift="">
+        IF >= 200 min
+        
+         THEN SENIOR
+    </div>
+    <div class="taskRule" 
+         data-result="JUNIOR" 
+         data-shift="">
+        IF (> 100 min
+        
+         OR MODERATE
+         )
+         THEN JUNIOR
+    </div>
+    <div class="taskRule" 
+         data-result="TRAINEE" 
+         data-shift="DAYSHIFT">
+        IF (EASY
+         AND (< 100 min
+         
+          OR DAYSHIFT
+          )
+         )
+         THEN TRAINEE
+    </div>
+    <div class="taskRule" 
+         data-result="JUNIOR" 
+         data-shift="DAYSHIFT">
+        IF (((EASY
+         AND >= 100 min
+         
+         )
+         OR ((MODERATE
+          AND > 90 min
+          
+          )
+          AND (MODERATE
+           AND < 180 min
+           
+           )
+          )
+         )
+         OR (HARD
+          AND DAYSHIFT
+          )
+         )
+         THEN JUNIOR
+    </div>
+</div>
 
+<script>
 function filterTaskRules() {
-    const filter = document.getElementsByName('filter')
+    const filter = document.getElementById('filter').value;
+	console.log('Selected filter:', filter);
+    const taskRules = document.querySelectorAll('.taskRule');
+    taskRules.forEach(rule => {
+        const result = rule.getAttribute('data-result');
+        const shift = rule.getAttribute('data-shift');
+        if (filter === "ALL" ||result === filter || shift === filter) {
+            rule.style.display = 'block';
+        } else {
+            rule.style.display = 'none';
+        }
+    });
+}
+</script>
 
 <p>Task Assignment:</p>
 	
