@@ -1,0 +1,2694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <mtl:Module name="generate" nsURI="org::eclipse::acceleo::module::TPS2Text::common::generate" startHeaderPosition="29" endHeaderPosition="132">
+    <input>
+      <takesTypesFrom href="http://www.example.org/tps#/"/>
+    </input>
+    <ownedModuleElement xsi:type="mtl:Template" name="generate" visibility="Public" main="true">
+      <body xsi:type="mtl:FileBlock" openMode="OverWrite">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;Task Rules: &#xA;"/>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+          <body xsi:type="mtl:TemplateInvocation" definition="/0/taskRule">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="aRule" referredVariable="/0/generate/%/%.1/aRule">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+            </argument>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+          <loopVariable name="aRule">
+            <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/8/OrderedSet(TaskRule)">
+            <source xsi:type="ocl.ecore:VariableExp" name="aTPS" referredVariable="/0/generate/aTPS">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/tps#//TPS/taskRules"/>
+          </iterSet>
+          <each xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </each>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;Filtering the Task Rules:&#xA;"/>
+        <body xsi:type="mtl:TemplateInvocation" definition="/0/dropdownMenu">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="aTPS" referredVariable="/0/generate/aTPS">
+            <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+          </argument>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#xA;Task Assignment:&#xA;&#x9;&#xA;"/>
+        <fileUrl xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="tps.html">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </fileUrl>
+        <charset xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="UTF-8">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </charset>
+      </body>
+      <parameter name="aTPS">
+        <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="taskRule" visibility="Public">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="IF&#xA;&#x9;"/>
+      <body xsi:type="mtl:TemplateInvocation" definition="/0/expression">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <argument xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="aRule" referredVariable="/0/taskRule/aRule">
+            <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+          </source>
+          <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/tps#//TaskRule/expression"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;THEN&#xA;&#x9;"/>
+      <body xsi:type="ocl.ecore:PropertyCallExp">
+        <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//SeniorityLevel"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="aRule" referredVariable="/0/taskRule/aRule">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+        </source>
+        <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//TaskRule/result"/>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#xA;"/>
+      <parameter name="aRule">
+        <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="expression" visibility="Public">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="mtl:IfBlock">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+        <body xsi:type="mtl:TemplateInvocation" definition="/0/atomicExpression">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <argument xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="anExpression" referredVariable="/0/expression/anExpression">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+            </source>
+            <argument xsi:type="ocl.ecore:TypeExp" eType="/26/AtomicExpression">
+              <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+          </argument>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+        <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="anExpression" referredVariable="/0/expression/anExpression">
+            <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+          </source>
+          <argument xsi:type="ocl.ecore:TypeExp" eType="/26/AtomicExpression">
+            <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+          </argument>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsTypeOf"/>
+        </ifExpr>
+        <else>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+          <body xsi:type="mtl:TemplateInvocation" definition="/0/compoundExpression">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <argument xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//CompoundExpression"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="anExpression" referredVariable="/0/expression/anExpression">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+              </source>
+              <argument xsi:type="ocl.ecore:TypeExp" eType="/26/CompoundExpression">
+                <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//CompoundExpression"/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+            </argument>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+        </else>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <parameter name="anExpression">
+        <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="atomicExpression" visibility="Public">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="mtl:IfBlock">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+        <body xsi:type="mtl:TemplateInvocation" definition="/0/difficultyExpression">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <argument xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DifficultyExpression"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="anAtomic" referredVariable="/0/atomicExpression/anAtomic">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+            </source>
+            <argument xsi:type="ocl.ecore:TypeExp" eType="/26/DifficultyExpression">
+              <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DifficultyExpression"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+          </argument>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+        <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="anAtomic" referredVariable="/0/atomicExpression/anAtomic">
+            <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+          </source>
+          <argument xsi:type="ocl.ecore:TypeExp" eType="/26/DifficultyExpression">
+            <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DifficultyExpression"/>
+          </argument>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsTypeOf"/>
+        </ifExpr>
+        <else>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+          <body xsi:type="mtl:TemplateInvocation" definition="/0/durationExpression">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <argument xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="anAtomic" referredVariable="/0/atomicExpression/anAtomic">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+              </source>
+              <argument xsi:type="ocl.ecore:TypeExp" eType="/26/DurationExpression">
+                <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+            </argument>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+        </else>
+        <elseIf>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+          <body xsi:type="mtl:TemplateInvocation" definition="/0/shiftExpression">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <argument xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="anAtomic" referredVariable="/0/atomicExpression/anAtomic">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+              </source>
+              <argument xsi:type="ocl.ecore:TypeExp" eType="/26/ShiftExpression">
+                <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+            </argument>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+          <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="anAtomic" referredVariable="/0/atomicExpression/anAtomic">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+            </source>
+            <argument xsi:type="ocl.ecore:TypeExp" eType="/26/ShiftExpression">
+              <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsTypeOf"/>
+          </ifExpr>
+        </elseIf>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <parameter name="anAtomic">
+        <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="compoundExpression" visibility="Public">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <parameter name="aCompound">
+        <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//CompoundExpression"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="difficultyExpression" visibility="Public">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="ocl.ecore:PropertyCallExp">
+        <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//DifficultyLevel"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="aDifficulty" referredVariable="/0/difficultyExpression/aDifficulty">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DifficultyExpression"/>
+        </source>
+        <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//DifficultyExpression/difficulty"/>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <parameter name="aDifficulty">
+        <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DifficultyExpression"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="shiftExpression" visibility="Public">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#xA;"/>
+      <parameter name="aShift">
+        <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="durationExpression" visibility="Public">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="mtl:IfBlock">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&lt; "/>
+        <body xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="aDuration" referredVariable="/0/durationExpression/aDuration">
+            <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//DurationExpression/minutes"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" min&#xA;"/>
+        <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//ComparisonOperator"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aDuration" referredVariable="/0/durationExpression/aDuration">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//DurationExpression/operator"/>
+          </source>
+          <argument xsi:type="ocl.ecore:EnumLiteralExp">
+            <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//ComparisonOperator"/>
+            <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.example.org/tps#//ComparisonOperator/LESSTHAN"/>
+          </argument>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/="/>
+        </ifExpr>
+        <else>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;> "/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aDuration" referredVariable="/0/durationExpression/aDuration">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//DurationExpression/minutes"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" min&#xA;"/>
+        </else>
+        <elseIf>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&lt;= "/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aDuration" referredVariable="/0/durationExpression/aDuration">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//DurationExpression/minutes"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" min&#xA;"/>
+          <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//ComparisonOperator"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="aDuration" referredVariable="/0/durationExpression/aDuration">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+              </source>
+              <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//DurationExpression/operator"/>
+            </source>
+            <argument xsi:type="ocl.ecore:EnumLiteralExp">
+              <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//ComparisonOperator"/>
+              <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.example.org/tps#//ComparisonOperator/LESSTHANOREQUAL"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/="/>
+          </ifExpr>
+        </elseIf>
+        <elseIf>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;= "/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aDuration" referredVariable="/0/durationExpression/aDuration">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//DurationExpression/minutes"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" min&#xA;"/>
+          <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//ComparisonOperator"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="aDuration" referredVariable="/0/durationExpression/aDuration">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+              </source>
+              <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//DurationExpression/operator"/>
+            </source>
+            <argument xsi:type="ocl.ecore:EnumLiteralExp">
+              <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//ComparisonOperator"/>
+              <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.example.org/tps#//ComparisonOperator/EQUAL"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/="/>
+          </ifExpr>
+        </elseIf>
+        <elseIf>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;>= "/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="aDuration" referredVariable="/0/durationExpression/aDuration">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//DurationExpression/minutes"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" min&#xA;"/>
+          <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//ComparisonOperator"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="aDuration" referredVariable="/0/durationExpression/aDuration">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+              </source>
+              <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//DurationExpression/operator"/>
+            </source>
+            <argument xsi:type="ocl.ecore:EnumLiteralExp">
+              <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//ComparisonOperator"/>
+              <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.example.org/tps#//ComparisonOperator/GREATERTHANOREQUAL"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/="/>
+          </ifExpr>
+        </elseIf>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <parameter name="aDuration">
+        <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="dropdownMenu" visibility="Public">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <parameter name="aTPS">
+        <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="filterTaskRulesByResult" visibility="Public">
+      <body xsi:type="mtl:LetBlock">
+        <body xsi:type="mtl:LetBlock">
+          <body xsi:type="mtl:LetBlock">
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#xA;"/>
+            <body xsi:type="mtl:ForBlock">
+              <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+              <body xsi:type="ocl.ecore:VariableExp" name="taskRule" referredVariable="/0/filterTaskRulesByResult/%/%/%/%.1/taskRule.1">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+              </body>
+              <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#xA;"/>
+              <loopVariable name="taskRule">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+              </loopVariable>
+              <iterSet xsi:type="ocl.ecore:VariableExp" name="seniorRules" eType="/8/OrderedSet(TaskRule)" referredVariable="/0/filterTaskRulesByResult/%/seniorRules"/>
+              <each xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              </each>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+            <body xsi:type="mtl:ForBlock">
+              <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+              <body xsi:type="ocl.ecore:VariableExp" name="taskRule" referredVariable="/0/filterTaskRulesByResult/%/%/%/%.3/taskRule.1">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+              </body>
+              <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+              <loopVariable name="taskRule">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+              </loopVariable>
+              <iterSet xsi:type="ocl.ecore:VariableExp" name="juniorRules" eType="/8/OrderedSet(TaskRule)" referredVariable="/0/filterTaskRulesByResult/%/%/juniorRules"/>
+              <each xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              </each>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+            <body xsi:type="mtl:ForBlock">
+              <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+              <body xsi:type="ocl.ecore:VariableExp" name="taskRule" referredVariable="/0/filterTaskRulesByResult/%/%/%/%.5/taskRule.1">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+              </body>
+              <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+              <loopVariable name="taskRule">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+              </loopVariable>
+              <iterSet xsi:type="ocl.ecore:VariableExp" name="traineeRules" eType="/8/OrderedSet(TaskRule)" referredVariable="/0/filterTaskRulesByResult/%/%/%/traineeRules"/>
+              <each xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              </each>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+            <letVariable name="traineeRules" eType="/8/OrderedSet(TaskRule)">
+              <initExpression xsi:type="ocl.ecore:IteratorExp" name="select" eType="/8/OrderedSet(TaskRule)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/8/OrderedSet(TaskRule)">
+                  <source xsi:type="ocl.ecore:VariableExp" name="tps" referredVariable="/0/filterTaskRulesByResult/tps">
+                    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/tps#//TPS/taskRules"/>
+                </source>
+                <body xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                  <source xsi:type="ocl.ecore:PropertyCallExp">
+                    <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//SeniorityLevel"/>
+                    <source xsi:type="ocl.ecore:VariableExp" name="taskRule" referredVariable="/0/filterTaskRulesByResult/%/%/%/traineeRules/select/taskRule">
+                      <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+                    </source>
+                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//TaskRule/result"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:EnumLiteralExp">
+                    <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//SeniorityLevel"/>
+                    <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.example.org/tps#//SeniorityLevel/TRAINEE"/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/="/>
+                </body>
+                <iterator xsi:type="ocl.ecore:Variable" name="taskRule">
+                  <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+                </iterator>
+              </initExpression>
+            </letVariable>
+          </body>
+          <letVariable name="juniorRules" eType="/8/OrderedSet(TaskRule)">
+            <initExpression xsi:type="ocl.ecore:IteratorExp" name="select" eType="/8/OrderedSet(TaskRule)">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="/8/OrderedSet(TaskRule)">
+                <source xsi:type="ocl.ecore:VariableExp" name="tps" referredVariable="/0/filterTaskRulesByResult/tps">
+                  <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/tps#//TPS/taskRules"/>
+              </source>
+              <body xsi:type="ocl.ecore:OperationCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                <source xsi:type="ocl.ecore:PropertyCallExp">
+                  <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//SeniorityLevel"/>
+                  <source xsi:type="ocl.ecore:VariableExp" name="taskRule" referredVariable="/0/filterTaskRulesByResult/%/%/juniorRules/select/taskRule">
+                    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//TaskRule/result"/>
+                </source>
+                <argument xsi:type="ocl.ecore:EnumLiteralExp">
+                  <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//SeniorityLevel"/>
+                  <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.example.org/tps#//SeniorityLevel/JUNIOR"/>
+                </argument>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/="/>
+              </body>
+              <iterator xsi:type="ocl.ecore:Variable" name="taskRule">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+              </iterator>
+            </initExpression>
+          </letVariable>
+        </body>
+        <letVariable name="seniorRules" eType="/8/OrderedSet(TaskRule)">
+          <initExpression xsi:type="ocl.ecore:IteratorExp" name="select" eType="/8/OrderedSet(TaskRule)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/8/OrderedSet(TaskRule)">
+              <source xsi:type="ocl.ecore:VariableExp" name="tps" referredVariable="/0/filterTaskRulesByResult/tps">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/tps#//TPS/taskRules"/>
+            </source>
+            <body xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              <source xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//SeniorityLevel"/>
+                <source xsi:type="ocl.ecore:VariableExp" name="taskRule" referredVariable="/0/filterTaskRulesByResult/%/seniorRules/select/taskRule">
+                  <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+                </source>
+                <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//TaskRule/result"/>
+              </source>
+              <argument xsi:type="ocl.ecore:EnumLiteralExp">
+                <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//SeniorityLevel"/>
+                <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.example.org/tps#//SeniorityLevel/SENIOR"/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/="/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="taskRule">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+            </iterator>
+          </initExpression>
+        </letVariable>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <parameter name="tps">
+        <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="filterTaskRulesByShift" visibility="Public">
+      <body xsi:type="mtl:LetBlock">
+        <body xsi:type="mtl:LetBlock">
+          <body xsi:type="mtl:LetBlock">
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+            <body xsi:type="mtl:ForBlock">
+              <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+              <body xsi:type="ocl.ecore:VariableExp" name="taskRule" referredVariable="/0/filterTaskRulesByShift/%/%/%/%.1/taskRule.1">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+              </body>
+              <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+              <loopVariable name="taskRule">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+              </loopVariable>
+              <iterSet xsi:type="ocl.ecore:VariableExp" name="dayShiftRules" eType="/8/OrderedSet(TaskRule)" referredVariable="/0/filterTaskRulesByShift/%/dayShiftRules"/>
+              <each xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              </each>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+            <body xsi:type="mtl:ForBlock">
+              <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+              <body xsi:type="ocl.ecore:VariableExp" name="taskRule" referredVariable="/0/filterTaskRulesByShift/%/%/%/%.3/taskRule.1">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+              </body>
+              <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+              <loopVariable name="taskRule">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+              </loopVariable>
+              <iterSet xsi:type="ocl.ecore:VariableExp" name="eveningShiftRules" eType="/8/OrderedSet(TaskRule)" referredVariable="/0/filterTaskRulesByShift/%/%/eveningShiftRules"/>
+              <each xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              </each>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+            <body xsi:type="mtl:ForBlock">
+              <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+              <body xsi:type="ocl.ecore:VariableExp" name="taskRule" referredVariable="/0/filterTaskRulesByShift/%/%/%/%.5/taskRule.1">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+              </body>
+              <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+              <loopVariable name="taskRule">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+              </loopVariable>
+              <iterSet xsi:type="ocl.ecore:VariableExp" name="nightShiftRules" eType="/8/OrderedSet(TaskRule)" referredVariable="/0/filterTaskRulesByShift/%/%/%/nightShiftRules"/>
+              <each xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              </each>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+            <letVariable name="nightShiftRules" eType="/8/OrderedSet(TaskRule)">
+              <initExpression xsi:type="ocl.ecore:IteratorExp" name="select" eType="/8/OrderedSet(TaskRule)">
+                <source xsi:type="ocl.ecore:PropertyCallExp" eType="/8/OrderedSet(TaskRule)">
+                  <source xsi:type="ocl.ecore:VariableExp" name="tps" referredVariable="/0/filterTaskRulesByShift/tps">
+                    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/tps#//TPS/taskRules"/>
+                </source>
+                <body xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                  <source xsi:type="ocl.ecore:OperationCallExp">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                    <source xsi:type="ocl.ecore:PropertyCallExp">
+                      <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+                      <source xsi:type="ocl.ecore:VariableExp" name="taskRule" referredVariable="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/taskRule">
+                        <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+                      </source>
+                      <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/tps#//TaskRule/expression"/>
+                    </source>
+                    <argument xsi:type="ocl.ecore:TypeExp" eType="/26/ShiftExpression">
+                      <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+                    </argument>
+                    <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsTypeOf"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:OperationCallExp">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                    <source xsi:type="ocl.ecore:PropertyCallExp">
+                      <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//Shift"/>
+                      <source xsi:type="ocl.ecore:OperationCallExp">
+                        <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+                        <source xsi:type="ocl.ecore:PropertyCallExp">
+                          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+                          <source xsi:type="ocl.ecore:VariableExp" name="taskRule" referredVariable="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/taskRule">
+                            <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+                          </source>
+                          <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/tps#//TaskRule/expression"/>
+                        </source>
+                        <argument xsi:type="ocl.ecore:TypeExp" eType="/26/ShiftExpression">
+                          <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+                        </argument>
+                        <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                      </source>
+                      <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//ShiftExpression/shift"/>
+                    </source>
+                    <argument xsi:type="ocl.ecore:EnumLiteralExp">
+                      <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//Shift"/>
+                      <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.example.org/tps#//Shift/NIGHTSHIFT"/>
+                    </argument>
+                    <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/="/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and"/>
+                </body>
+                <iterator xsi:type="ocl.ecore:Variable" name="taskRule">
+                  <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+                </iterator>
+              </initExpression>
+            </letVariable>
+          </body>
+          <letVariable name="eveningShiftRules" eType="/8/OrderedSet(TaskRule)">
+            <initExpression xsi:type="ocl.ecore:IteratorExp" name="select" eType="/8/OrderedSet(TaskRule)">
+              <source xsi:type="ocl.ecore:PropertyCallExp" eType="/8/OrderedSet(TaskRule)">
+                <source xsi:type="ocl.ecore:VariableExp" name="tps" referredVariable="/0/filterTaskRulesByShift/tps">
+                  <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/tps#//TPS/taskRules"/>
+              </source>
+              <body xsi:type="ocl.ecore:OperationCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                <source xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                  <source xsi:type="ocl.ecore:PropertyCallExp">
+                    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+                    <source xsi:type="ocl.ecore:VariableExp" name="taskRule" referredVariable="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/taskRule">
+                      <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+                    </source>
+                    <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/tps#//TaskRule/expression"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:TypeExp" eType="/26/ShiftExpression">
+                    <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsTypeOf"/>
+                </source>
+                <argument xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                  <source xsi:type="ocl.ecore:PropertyCallExp">
+                    <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//Shift"/>
+                    <source xsi:type="ocl.ecore:OperationCallExp">
+                      <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+                      <source xsi:type="ocl.ecore:PropertyCallExp">
+                        <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+                        <source xsi:type="ocl.ecore:VariableExp" name="taskRule" referredVariable="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/taskRule">
+                          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+                        </source>
+                        <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/tps#//TaskRule/expression"/>
+                      </source>
+                      <argument xsi:type="ocl.ecore:TypeExp" eType="/26/ShiftExpression">
+                        <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+                      </argument>
+                      <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                    </source>
+                    <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//ShiftExpression/shift"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:EnumLiteralExp">
+                    <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//Shift"/>
+                    <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.example.org/tps#//Shift/EVENINGSHIFT"/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/="/>
+                </argument>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and"/>
+              </body>
+              <iterator xsi:type="ocl.ecore:Variable" name="taskRule">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+              </iterator>
+            </initExpression>
+          </letVariable>
+        </body>
+        <letVariable name="dayShiftRules" eType="/8/OrderedSet(TaskRule)">
+          <initExpression xsi:type="ocl.ecore:IteratorExp" name="select" eType="/8/OrderedSet(TaskRule)">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="/8/OrderedSet(TaskRule)">
+              <source xsi:type="ocl.ecore:VariableExp" name="tps" referredVariable="/0/filterTaskRulesByShift/tps">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/tps#//TPS/taskRules"/>
+            </source>
+            <body xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+              <source xsi:type="ocl.ecore:OperationCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                <source xsi:type="ocl.ecore:PropertyCallExp">
+                  <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+                  <source xsi:type="ocl.ecore:VariableExp" name="taskRule" referredVariable="/0/filterTaskRulesByShift/%/dayShiftRules/select/taskRule">
+                    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/tps#//TaskRule/expression"/>
+                </source>
+                <argument xsi:type="ocl.ecore:TypeExp" eType="/26/ShiftExpression">
+                  <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+                </argument>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsTypeOf"/>
+              </source>
+              <argument xsi:type="ocl.ecore:OperationCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+                <source xsi:type="ocl.ecore:PropertyCallExp">
+                  <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//Shift"/>
+                  <source xsi:type="ocl.ecore:OperationCallExp">
+                    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+                    <source xsi:type="ocl.ecore:PropertyCallExp">
+                      <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+                      <source xsi:type="ocl.ecore:VariableExp" name="taskRule" referredVariable="/0/filterTaskRulesByShift/%/dayShiftRules/select/taskRule">
+                        <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+                      </source>
+                      <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/tps#//TaskRule/expression"/>
+                    </source>
+                    <argument xsi:type="ocl.ecore:TypeExp" eType="/26/ShiftExpression">
+                      <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+                    </argument>
+                    <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+                  </source>
+                  <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/tps#//ShiftExpression/shift"/>
+                </source>
+                <argument xsi:type="ocl.ecore:EnumLiteralExp">
+                  <eType xsi:type="ecore:EEnum" href="http://www.example.org/tps#//Shift"/>
+                  <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.example.org/tps#//Shift/DAYSHIFT"/>
+                </argument>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/="/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and"/>
+            </body>
+            <iterator xsi:type="ocl.ecore:Variable" name="taskRule">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+            </iterator>
+          </initExpression>
+        </letVariable>
+      </body>
+      <parameter name="tps">
+        <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+      </parameter>
+    </ownedModuleElement>
+  </mtl:Module>
+  <ecore:EPackage name="additions">
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_String_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Integer_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Real_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ecore_EObject_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eAnnotations>
+      <eOperations name="generate">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/generate"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aTPS">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="taskRule">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/taskRule"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aRule">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="expression">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/expression"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="anExpression">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="atomicExpression">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/atomicExpression"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="anAtomic">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="compoundExpression">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/compoundExpression"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aCompound">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//CompoundExpression"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="difficultyExpression">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/difficultyExpression"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aDifficulty">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DifficultyExpression"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="shiftExpression">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/shiftExpression"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aShift">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="durationExpression">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/durationExpression"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aDuration">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="dropdownMenu">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/dropdownMenu"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aTPS">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="filterTaskRulesByResult">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/filterTaskRulesByResult"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="tps">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="filterTaskRulesByShift">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/filterTaskRulesByShift"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="tps">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OclAny_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Collection(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Collection(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Sequence(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OrderedSet(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="tps_TPS_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.example.org/tps#//TPS"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="tps_TaskRule_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.example.org/tps#//TaskRule"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="tps_Expression_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.example.org/tps#//Expression"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="tps_AtomicExpression_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.example.org/tps#//AtomicExpression"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="tps_CompoundExpression_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.example.org/tps#//CompoundExpression"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="tps_DifficultyExpression_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.example.org/tps#//DifficultyExpression"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="tps_ShiftExpression_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.example.org/tps#//ShiftExpression"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="tps_DurationExpression_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.example.org/tps#//DurationExpression"/>
+      </eAnnotations>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ecore:EPackage name="collections">
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(TaskRule)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+  </ocl.ecore:Variable>
+  <ecore:EPackage name="types">
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="AtomicExpression">
+      <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="CompoundExpression">
+      <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//CompoundExpression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="DifficultyExpression">
+      <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DifficultyExpression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="ShiftExpression">
+      <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="DurationExpression">
+      <referredType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//Expression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//AtomicExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//CompoundExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//CompoundExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DifficultyExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DifficultyExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DifficultyExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//ShiftExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//DurationExpression"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TaskRule"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/tps#//TPS"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ecore:EAnnotation source="positions">
+    <eAnnotations source="positions.0" references="/0/generate">
+      <details key="start" value="79"/>
+      <details key="end" value="357"/>
+      <details key="line" value="5"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1" references="/0/generate/%">
+      <details key="start" value="135"/>
+      <details key="end" value="345"/>
+      <details key="line" value="7"/>
+    </eAnnotations>
+    <eAnnotations source="positions.2" references="/0/generate/%/%">
+      <details key="start" value="170"/>
+      <details key="end" value="184"/>
+      <details key="line" value="8"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/generate/%/%.1">
+      <details key="start" value="184"/>
+      <details key="end" value="268"/>
+      <details key="line" value="10"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/generate/%/%.1/%">
+      <details key="start" value="242"/>
+      <details key="end" value="243"/>
+      <details key="line" value="11"/>
+    </eAnnotations>
+    <eAnnotations source="positions.5" references="/0/generate/%/%.1/%.1">
+      <details key="start" value="244"/>
+      <details key="end" value="259"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/generate/%/%.1/%.1/aRule">
+      <details key="start" value="253"/>
+      <details key="end" value="258"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/generate/%/%.1/%.2">
+      <details key="start" value="261"/>
+      <details key="end" value="262"/>
+      <details key="line" value="12"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/generate/%/%.1/aRule">
+      <details key="start" value="190"/>
+      <details key="end" value="206"/>
+      <details key="line" value="10"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/generate/%/%.1/%.3">
+      <details key="start" value="209"/>
+      <details key="end" value="223"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.10" references="/0/generate/%/%.1/%.3/aTPS">
+      <details key="start" value="209"/>
+      <details key="end" value="213"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.11" references="/0/generate/%/%.1/%.4">
+      <details key="start" value="235"/>
+      <details key="end" value="239"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.12" references="/0/generate/%/%.2">
+      <details key="start" value="269"/>
+      <details key="end" value="296"/>
+      <details key="line" value="13"/>
+    </eAnnotations>
+    <eAnnotations source="positions.13" references="/0/generate/%/%.3">
+      <details key="start" value="297"/>
+      <details key="end" value="315"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.14" references="/0/generate/%/%.3/aTPS">
+      <details key="start" value="310"/>
+      <details key="end" value="314"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/generate/%/%.4">
+      <details key="start" value="317"/>
+      <details key="end" value="338"/>
+      <details key="line" value="16"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/generate/%/%.5">
+      <details key="start" value="141"/>
+      <details key="end" value="151"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/generate/%/%.6">
+      <details key="start" value="160"/>
+      <details key="end" value="167"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/generate/aTPS">
+      <details key="start" value="105"/>
+      <details key="end" value="115"/>
+      <details key="line" value="5"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/taskRule">
+      <details key="start" value="359"/>
+      <details key="end" value="475"/>
+      <details key="line" value="22"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/taskRule/%">
+      <details key="start" value="404"/>
+      <details key="end" value="408"/>
+      <details key="line" value="23"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/taskRule/%.1">
+      <details key="start" value="409"/>
+      <details key="end" value="437"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/taskRule/%.1/%">
+      <details key="start" value="420"/>
+      <details key="end" value="436"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/taskRule/%.1/%/aRule">
+      <details key="start" value="420"/>
+      <details key="end" value="425"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/taskRule/%.2">
+      <details key="start" value="439"/>
+      <details key="end" value="446"/>
+      <details key="line" value="25"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/taskRule/%.3">
+      <details key="start" value="447"/>
+      <details key="end" value="459"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/taskRule/%.3/aRule">
+      <details key="start" value="447"/>
+      <details key="end" value="452"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.27" references="/0/taskRule/%.4">
+      <details key="start" value="461"/>
+      <details key="end" value="463"/>
+      <details key="line" value="27"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/taskRule/aRule">
+      <details key="start" value="385"/>
+      <details key="end" value="401"/>
+      <details key="line" value="22"/>
+    </eAnnotations>
+    <eAnnotations source="positions.29" references="/0/expression">
+      <details key="start" value="477"/>
+      <details key="end" value="739"/>
+      <details key="line" value="31"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/expression/%">
+      <details key="start" value="533"/>
+      <details key="end" value="534"/>
+      <details key="line" value="32"/>
+    </eAnnotations>
+    <eAnnotations source="positions.31" references="/0/expression/%.1">
+      <details key="start" value="534"/>
+      <details key="end" value="726"/>
+      <details key="line" value="33"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/expression/%.1/%">
+      <details key="start" value="584"/>
+      <details key="end" value="585"/>
+      <details key="line" value="34"/>
+    </eAnnotations>
+    <eAnnotations source="positions.33" references="/0/expression/%.1/%.1">
+      <details key="start" value="586"/>
+      <details key="end" value="644"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/expression/%.1/%.1/%">
+      <details key="start" value="603"/>
+      <details key="end" value="643"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.35" references="/0/expression/%.1/%.1/%/anExpression">
+      <details key="start" value="603"/>
+      <details key="end" value="615"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.36" references="/0/expression/%.1/%.1/%/%">
+      <details key="start" value="626"/>
+      <details key="end" value="642"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.37" references="/0/expression/%.1/%.2">
+      <details key="start" value="646"/>
+      <details key="end" value="647"/>
+      <details key="line" value="35"/>
+    </eAnnotations>
+    <eAnnotations source="positions.38" references="/0/expression/%.1/%.3">
+      <details key="start" value="538"/>
+      <details key="end" value="582"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.39" references="/0/expression/%.1/%.3/anExpression">
+      <details key="start" value="539"/>
+      <details key="end" value="551"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.40" references="/0/expression/%.1/%.3/%">
+      <details key="start" value="564"/>
+      <details key="end" value="580"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.41" references="/0/expression/%.1/%.4">
+      <details key="start" value="647"/>
+      <details key="end" value="721"/>
+      <details key="line" value="35"/>
+    </eAnnotations>
+    <eAnnotations source="positions.42" references="/0/expression/%.1/%.4/%">
+      <details key="start" value="654"/>
+      <details key="end" value="655"/>
+      <details key="line" value="36"/>
+    </eAnnotations>
+    <eAnnotations source="positions.43" references="/0/expression/%.1/%.4/%.1">
+      <details key="start" value="656"/>
+      <details key="end" value="718"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.44" references="/0/expression/%.1/%.4/%.1/%">
+      <details key="start" value="675"/>
+      <details key="end" value="717"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.45" references="/0/expression/%.1/%.4/%.1/%/anExpression">
+      <details key="start" value="675"/>
+      <details key="end" value="687"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.46" references="/0/expression/%.1/%.4/%.1/%/%">
+      <details key="start" value="698"/>
+      <details key="end" value="716"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.47" references="/0/expression/%.1/%.4/%.2">
+      <details key="start" value="720"/>
+      <details key="end" value="721"/>
+      <details key="line" value="37"/>
+    </eAnnotations>
+    <eAnnotations source="positions.48" references="/0/expression/%.2">
+      <details key="start" value="727"/>
+      <details key="end" value="728"/>
+      <details key="line" value="38"/>
+    </eAnnotations>
+    <eAnnotations source="positions.49" references="/0/expression/anExpression">
+      <details key="start" value="505"/>
+      <details key="end" value="530"/>
+      <details key="line" value="31"/>
+    </eAnnotations>
+    <eAnnotations source="positions.50" references="/0/atomicExpression">
+      <details key="start" value="741"/>
+      <details key="end" value="1117"/>
+      <details key="line" value="41"/>
+    </eAnnotations>
+    <eAnnotations source="positions.51" references="/0/atomicExpression/%">
+      <details key="start" value="805"/>
+      <details key="end" value="806"/>
+      <details key="line" value="42"/>
+    </eAnnotations>
+    <eAnnotations source="positions.52" references="/0/atomicExpression/%.1">
+      <details key="start" value="806"/>
+      <details key="end" value="1104"/>
+      <details key="line" value="43"/>
+    </eAnnotations>
+    <eAnnotations source="positions.53" references="/0/atomicExpression/%.1/%">
+      <details key="start" value="856"/>
+      <details key="end" value="857"/>
+      <details key="line" value="44"/>
+    </eAnnotations>
+    <eAnnotations source="positions.54" references="/0/atomicExpression/%.1/%.1">
+      <details key="start" value="858"/>
+      <details key="end" value="920"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.55" references="/0/atomicExpression/%.1/%.1/%">
+      <details key="start" value="879"/>
+      <details key="end" value="919"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.56" references="/0/atomicExpression/%.1/%.1/%/anAtomic">
+      <details key="start" value="879"/>
+      <details key="end" value="887"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.57" references="/0/atomicExpression/%.1/%.1/%/%">
+      <details key="start" value="898"/>
+      <details key="end" value="918"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.58" references="/0/atomicExpression/%.1/%.2">
+      <details key="start" value="922"/>
+      <details key="end" value="923"/>
+      <details key="line" value="45"/>
+    </eAnnotations>
+    <eAnnotations source="positions.59" references="/0/atomicExpression/%.1/%.3">
+      <details key="start" value="810"/>
+      <details key="end" value="854"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.60" references="/0/atomicExpression/%.1/%.3/anAtomic">
+      <details key="start" value="811"/>
+      <details key="end" value="819"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.61" references="/0/atomicExpression/%.1/%.3/%">
+      <details key="start" value="832"/>
+      <details key="end" value="852"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.62" references="/0/atomicExpression/%.1/%.4">
+      <details key="start" value="1029"/>
+      <details key="end" value="1099"/>
+      <details key="line" value="47"/>
+    </eAnnotations>
+    <eAnnotations source="positions.63" references="/0/atomicExpression/%.1/%.4/%">
+      <details key="start" value="1036"/>
+      <details key="end" value="1037"/>
+      <details key="line" value="48"/>
+    </eAnnotations>
+    <eAnnotations source="positions.64" references="/0/atomicExpression/%.1/%.4/%.1">
+      <details key="start" value="1038"/>
+      <details key="end" value="1096"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.65" references="/0/atomicExpression/%.1/%.4/%.1/%">
+      <details key="start" value="1057"/>
+      <details key="end" value="1095"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.66" references="/0/atomicExpression/%.1/%.4/%.1/%/anAtomic">
+      <details key="start" value="1057"/>
+      <details key="end" value="1065"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.67" references="/0/atomicExpression/%.1/%.4/%.1/%/%">
+      <details key="start" value="1076"/>
+      <details key="end" value="1094"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.68" references="/0/atomicExpression/%.1/%.4/%.2">
+      <details key="start" value="1098"/>
+      <details key="end" value="1099"/>
+      <details key="line" value="49"/>
+    </eAnnotations>
+    <eAnnotations source="positions.69" references="/0/atomicExpression/%.1/%.5">
+      <details key="start" value="923"/>
+      <details key="end" value="1029"/>
+      <details key="line" value="45"/>
+    </eAnnotations>
+    <eAnnotations source="positions.70" references="/0/atomicExpression/%.1/%.5/%">
+      <details key="start" value="972"/>
+      <details key="end" value="973"/>
+      <details key="line" value="46"/>
+    </eAnnotations>
+    <eAnnotations source="positions.71" references="/0/atomicExpression/%.1/%.5/%.1">
+      <details key="start" value="974"/>
+      <details key="end" value="1026"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.72" references="/0/atomicExpression/%.1/%.5/%.1/%">
+      <details key="start" value="990"/>
+      <details key="end" value="1025"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.73" references="/0/atomicExpression/%.1/%.5/%.1/%/anAtomic">
+      <details key="start" value="990"/>
+      <details key="end" value="998"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.74" references="/0/atomicExpression/%.1/%.5/%.1/%/%">
+      <details key="start" value="1009"/>
+      <details key="end" value="1024"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.75" references="/0/atomicExpression/%.1/%.5/%.2">
+      <details key="start" value="1028"/>
+      <details key="end" value="1029"/>
+      <details key="line" value="47"/>
+    </eAnnotations>
+    <eAnnotations source="positions.76" references="/0/atomicExpression/%.1/%.5/%.3">
+      <details key="start" value="931"/>
+      <details key="end" value="970"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.77" references="/0/atomicExpression/%.1/%.5/%.3/anAtomic">
+      <details key="start" value="932"/>
+      <details key="end" value="940"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.78" references="/0/atomicExpression/%.1/%.5/%.3/%">
+      <details key="start" value="953"/>
+      <details key="end" value="968"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.79" references="/0/atomicExpression/%.2">
+      <details key="start" value="1105"/>
+      <details key="end" value="1106"/>
+      <details key="line" value="50"/>
+    </eAnnotations>
+    <eAnnotations source="positions.80" references="/0/atomicExpression/anAtomic">
+      <details key="start" value="775"/>
+      <details key="end" value="802"/>
+      <details key="line" value="41"/>
+    </eAnnotations>
+    <eAnnotations source="positions.81" references="/0/compoundExpression">
+      <details key="start" value="1119"/>
+      <details key="end" value="1201"/>
+      <details key="line" value="53"/>
+    </eAnnotations>
+    <eAnnotations source="positions.82" references="/0/compoundExpression/%">
+      <details key="start" value="1188"/>
+      <details key="end" value="1189"/>
+      <details key="line" value="54"/>
+    </eAnnotations>
+    <eAnnotations source="positions.83" references="/0/compoundExpression/aCompound">
+      <details key="start" value="1155"/>
+      <details key="end" value="1185"/>
+      <details key="line" value="53"/>
+    </eAnnotations>
+    <eAnnotations source="positions.84" references="/0/difficultyExpression">
+      <details key="start" value="1203"/>
+      <details key="end" value="1317"/>
+      <details key="line" value="58"/>
+    </eAnnotations>
+    <eAnnotations source="positions.85" references="/0/difficultyExpression/%">
+      <details key="start" value="1278"/>
+      <details key="end" value="1279"/>
+      <details key="line" value="59"/>
+    </eAnnotations>
+    <eAnnotations source="positions.86" references="/0/difficultyExpression/%.1">
+      <details key="start" value="1280"/>
+      <details key="end" value="1302"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.87" references="/0/difficultyExpression/%.1/aDifficulty">
+      <details key="start" value="1280"/>
+      <details key="end" value="1291"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.88" references="/0/difficultyExpression/%.2">
+      <details key="start" value="1304"/>
+      <details key="end" value="1305"/>
+      <details key="line" value="61"/>
+    </eAnnotations>
+    <eAnnotations source="positions.89" references="/0/difficultyExpression/aDifficulty">
+      <details key="start" value="1241"/>
+      <details key="end" value="1275"/>
+      <details key="line" value="58"/>
+    </eAnnotations>
+    <eAnnotations source="positions.90" references="/0/shiftExpression">
+      <details key="start" value="1319"/>
+      <details key="end" value="1393"/>
+      <details key="line" value="64"/>
+    </eAnnotations>
+    <eAnnotations source="positions.91" references="/0/shiftExpression/%">
+      <details key="start" value="1379"/>
+      <details key="end" value="1381"/>
+      <details key="line" value="65"/>
+    </eAnnotations>
+    <eAnnotations source="positions.92" references="/0/shiftExpression/aShift">
+      <details key="start" value="1352"/>
+      <details key="end" value="1376"/>
+      <details key="line" value="64"/>
+    </eAnnotations>
+    <eAnnotations source="positions.93" references="/0/durationExpression">
+      <details key="start" value="1395"/>
+      <details key="end" value="1886"/>
+      <details key="line" value="70"/>
+    </eAnnotations>
+    <eAnnotations source="positions.94" references="/0/durationExpression/%">
+      <details key="start" value="1464"/>
+      <details key="end" value="1465"/>
+      <details key="line" value="71"/>
+    </eAnnotations>
+    <eAnnotations source="positions.95" references="/0/durationExpression/%.1">
+      <details key="start" value="1465"/>
+      <details key="end" value="1873"/>
+      <details key="line" value="72"/>
+    </eAnnotations>
+    <eAnnotations source="positions.96" references="/0/durationExpression/%.1/%">
+      <details key="start" value="1522"/>
+      <details key="end" value="1525"/>
+      <details key="line" value="73"/>
+    </eAnnotations>
+    <eAnnotations source="positions.97" references="/0/durationExpression/%.1/%.1">
+      <details key="start" value="1526"/>
+      <details key="end" value="1543"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.98" references="/0/durationExpression/%.1/%.1/aDuration">
+      <details key="start" value="1526"/>
+      <details key="end" value="1535"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.99" references="/0/durationExpression/%.1/%.2">
+      <details key="start" value="1545"/>
+      <details key="end" value="1550"/>
+      <details key="line" value="73"/>
+    </eAnnotations>
+    <eAnnotations source="positions.100" references="/0/durationExpression/%.1/%.3">
+      <details key="start" value="1469"/>
+      <details key="end" value="1520"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.101" references="/0/durationExpression/%.1/%.3/%">
+      <details key="start" value="1469"/>
+      <details key="end" value="1487"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.102" references="/0/durationExpression/%.1/%.3/%/aDuration">
+      <details key="start" value="1469"/>
+      <details key="end" value="1478"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.103" references="/0/durationExpression/%.1/%.3/%.1">
+      <details key="start" value="1490"/>
+      <details key="end" value="1520"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.104" references="/0/durationExpression/%.1/%.4">
+      <details key="start" value="1833"/>
+      <details key="end" value="1868"/>
+      <details key="line" value="80"/>
+    </eAnnotations>
+    <eAnnotations source="positions.105" references="/0/durationExpression/%.1/%.4/%">
+      <details key="start" value="1840"/>
+      <details key="end" value="1843"/>
+      <details key="line" value="81"/>
+    </eAnnotations>
+    <eAnnotations source="positions.106" references="/0/durationExpression/%.1/%.4/%.1">
+      <details key="start" value="1844"/>
+      <details key="end" value="1861"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.107" references="/0/durationExpression/%.1/%.4/%.1/aDuration">
+      <details key="start" value="1844"/>
+      <details key="end" value="1853"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.108" references="/0/durationExpression/%.1/%.4/%.2">
+      <details key="start" value="1863"/>
+      <details key="end" value="1868"/>
+      <details key="line" value="81"/>
+    </eAnnotations>
+    <eAnnotations source="positions.109" references="/0/durationExpression/%.1/%.5">
+      <details key="start" value="1550"/>
+      <details key="end" value="1647"/>
+      <details key="line" value="74"/>
+    </eAnnotations>
+    <eAnnotations source="positions.110" references="/0/durationExpression/%.1/%.5/%">
+      <details key="start" value="1618"/>
+      <details key="end" value="1622"/>
+      <details key="line" value="75"/>
+    </eAnnotations>
+    <eAnnotations source="positions.111" references="/0/durationExpression/%.1/%.5/%.1">
+      <details key="start" value="1623"/>
+      <details key="end" value="1640"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.112" references="/0/durationExpression/%.1/%.5/%.1/aDuration">
+      <details key="start" value="1623"/>
+      <details key="end" value="1632"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.113" references="/0/durationExpression/%.1/%.5/%.2">
+      <details key="start" value="1642"/>
+      <details key="end" value="1647"/>
+      <details key="line" value="75"/>
+    </eAnnotations>
+    <eAnnotations source="positions.114" references="/0/durationExpression/%.1/%.5/%.3">
+      <details key="start" value="1558"/>
+      <details key="end" value="1616"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.115" references="/0/durationExpression/%.1/%.5/%.3/%">
+      <details key="start" value="1558"/>
+      <details key="end" value="1576"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.116" references="/0/durationExpression/%.1/%.5/%.3/%/aDuration">
+      <details key="start" value="1558"/>
+      <details key="end" value="1567"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.117" references="/0/durationExpression/%.1/%.5/%.3/%.1">
+      <details key="start" value="1579"/>
+      <details key="end" value="1616"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.118" references="/0/durationExpression/%.1/%.6">
+      <details key="start" value="1647"/>
+      <details key="end" value="1733"/>
+      <details key="line" value="76"/>
+    </eAnnotations>
+    <eAnnotations source="positions.119" references="/0/durationExpression/%.1/%.6/%">
+      <details key="start" value="1705"/>
+      <details key="end" value="1708"/>
+      <details key="line" value="77"/>
+    </eAnnotations>
+    <eAnnotations source="positions.120" references="/0/durationExpression/%.1/%.6/%.1">
+      <details key="start" value="1709"/>
+      <details key="end" value="1726"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.121" references="/0/durationExpression/%.1/%.6/%.1/aDuration">
+      <details key="start" value="1709"/>
+      <details key="end" value="1718"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.122" references="/0/durationExpression/%.1/%.6/%.2">
+      <details key="start" value="1728"/>
+      <details key="end" value="1733"/>
+      <details key="line" value="77"/>
+    </eAnnotations>
+    <eAnnotations source="positions.123" references="/0/durationExpression/%.1/%.6/%.3">
+      <details key="start" value="1655"/>
+      <details key="end" value="1703"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.124" references="/0/durationExpression/%.1/%.6/%.3/%">
+      <details key="start" value="1655"/>
+      <details key="end" value="1673"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.125" references="/0/durationExpression/%.1/%.6/%.3/%/aDuration">
+      <details key="start" value="1655"/>
+      <details key="end" value="1664"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.126" references="/0/durationExpression/%.1/%.6/%.3/%.1">
+      <details key="start" value="1676"/>
+      <details key="end" value="1703"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.127" references="/0/durationExpression/%.1/%.7">
+      <details key="start" value="1733"/>
+      <details key="end" value="1833"/>
+      <details key="line" value="78"/>
+    </eAnnotations>
+    <eAnnotations source="positions.128" references="/0/durationExpression/%.1/%.7/%">
+      <details key="start" value="1804"/>
+      <details key="end" value="1808"/>
+      <details key="line" value="79"/>
+    </eAnnotations>
+    <eAnnotations source="positions.129" references="/0/durationExpression/%.1/%.7/%.1">
+      <details key="start" value="1809"/>
+      <details key="end" value="1826"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.130" references="/0/durationExpression/%.1/%.7/%.1/aDuration">
+      <details key="start" value="1809"/>
+      <details key="end" value="1818"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.131" references="/0/durationExpression/%.1/%.7/%.2">
+      <details key="start" value="1828"/>
+      <details key="end" value="1833"/>
+      <details key="line" value="79"/>
+    </eAnnotations>
+    <eAnnotations source="positions.132" references="/0/durationExpression/%.1/%.7/%.3">
+      <details key="start" value="1741"/>
+      <details key="end" value="1802"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.133" references="/0/durationExpression/%.1/%.7/%.3/%">
+      <details key="start" value="1741"/>
+      <details key="end" value="1759"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.134" references="/0/durationExpression/%.1/%.7/%.3/%/aDuration">
+      <details key="start" value="1741"/>
+      <details key="end" value="1750"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.135" references="/0/durationExpression/%.1/%.7/%.3/%.1">
+      <details key="start" value="1762"/>
+      <details key="end" value="1802"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.136" references="/0/durationExpression/%.2">
+      <details key="start" value="1874"/>
+      <details key="end" value="1875"/>
+      <details key="line" value="83"/>
+    </eAnnotations>
+    <eAnnotations source="positions.137" references="/0/durationExpression/aDuration">
+      <details key="start" value="1431"/>
+      <details key="end" value="1461"/>
+      <details key="line" value="70"/>
+    </eAnnotations>
+    <eAnnotations source="positions.138" references="/0/dropdownMenu">
+      <details key="start" value="1889"/>
+      <details key="end" value="1945"/>
+      <details key="line" value="87"/>
+    </eAnnotations>
+    <eAnnotations source="positions.139" references="/0/dropdownMenu/%">
+      <details key="start" value="1932"/>
+      <details key="end" value="1933"/>
+      <details key="line" value="88"/>
+    </eAnnotations>
+    <eAnnotations source="positions.140" references="/0/dropdownMenu/aTPS">
+      <details key="start" value="1919"/>
+      <details key="end" value="1929"/>
+      <details key="line" value="87"/>
+    </eAnnotations>
+    <eAnnotations source="positions.141" references="/0/filterTaskRulesByResult">
+      <details key="start" value="1947"/>
+      <details key="end" value="2630"/>
+      <details key="line" value="92"/>
+    </eAnnotations>
+    <eAnnotations source="positions.142" references="/0/filterTaskRulesByResult/%">
+      <details key="start" value="2000"/>
+      <details key="end" value="2617"/>
+      <details key="line" value="93"/>
+    </eAnnotations>
+    <eAnnotations source="positions.143" references="/0/filterTaskRulesByResult/%/%">
+      <details key="start" value="2118"/>
+      <details key="end" value="2610"/>
+      <details key="line" value="94"/>
+    </eAnnotations>
+    <eAnnotations source="positions.144" references="/0/filterTaskRulesByResult/%/%/%">
+      <details key="start" value="2236"/>
+      <details key="end" value="2603"/>
+      <details key="line" value="95"/>
+    </eAnnotations>
+    <eAnnotations source="positions.145" references="/0/filterTaskRulesByResult/%/%/%/%">
+      <details key="start" value="2356"/>
+      <details key="end" value="2358"/>
+      <details key="line" value="96"/>
+    </eAnnotations>
+    <eAnnotations source="positions.146" references="/0/filterTaskRulesByResult/%/%/%/%.1">
+      <details key="start" value="2358"/>
+      <details key="end" value="2436"/>
+      <details key="line" value="98"/>
+    </eAnnotations>
+    <eAnnotations source="positions.147" references="/0/filterTaskRulesByResult/%/%/%/%.1/%">
+      <details key="start" value="2416"/>
+      <details key="end" value="2417"/>
+      <details key="line" value="99"/>
+    </eAnnotations>
+    <eAnnotations source="positions.148" references="/0/filterTaskRulesByResult/%/%/%/%.1/taskRule">
+      <details key="start" value="2418"/>
+      <details key="end" value="2426"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.149" references="/0/filterTaskRulesByResult/%/%/%/%.1/%.1">
+      <details key="start" value="2428"/>
+      <details key="end" value="2430"/>
+      <details key="line" value="99"/>
+    </eAnnotations>
+    <eAnnotations source="positions.150" references="/0/filterTaskRulesByResult/%/%/%/%.1/taskRule.1">
+      <details key="start" value="2364"/>
+      <details key="end" value="2383"/>
+      <details key="line" value="98"/>
+    </eAnnotations>
+    <eAnnotations source="positions.151" references="/0/filterTaskRulesByResult/%/%/%/%.1/seniorRules">
+      <details key="start" value="2386"/>
+      <details key="end" value="2397"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.152" references="/0/filterTaskRulesByResult/%/%/%/%.1/%.2">
+      <details key="start" value="2409"/>
+      <details key="end" value="2413"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.153" references="/0/filterTaskRulesByResult/%/%/%/%.2">
+      <details key="start" value="2437"/>
+      <details key="end" value="2438"/>
+      <details key="line" value="101"/>
+    </eAnnotations>
+    <eAnnotations source="positions.154" references="/0/filterTaskRulesByResult/%/%/%/%.3">
+      <details key="start" value="2438"/>
+      <details key="end" value="2515"/>
+      <details key="line" value="102"/>
+    </eAnnotations>
+    <eAnnotations source="positions.155" references="/0/filterTaskRulesByResult/%/%/%/%.3/%">
+      <details key="start" value="2496"/>
+      <details key="end" value="2497"/>
+      <details key="line" value="103"/>
+    </eAnnotations>
+    <eAnnotations source="positions.156" references="/0/filterTaskRulesByResult/%/%/%/%.3/taskRule">
+      <details key="start" value="2498"/>
+      <details key="end" value="2506"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.157" references="/0/filterTaskRulesByResult/%/%/%/%.3/%.1">
+      <details key="start" value="2508"/>
+      <details key="end" value="2509"/>
+      <details key="line" value="104"/>
+    </eAnnotations>
+    <eAnnotations source="positions.158" references="/0/filterTaskRulesByResult/%/%/%/%.3/taskRule.1">
+      <details key="start" value="2444"/>
+      <details key="end" value="2463"/>
+      <details key="line" value="102"/>
+    </eAnnotations>
+    <eAnnotations source="positions.159" references="/0/filterTaskRulesByResult/%/%/%/%.3/juniorRules">
+      <details key="start" value="2466"/>
+      <details key="end" value="2477"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.160" references="/0/filterTaskRulesByResult/%/%/%/%.3/%.2">
+      <details key="start" value="2489"/>
+      <details key="end" value="2493"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.161" references="/0/filterTaskRulesByResult/%/%/%/%.4">
+      <details key="start" value="2516"/>
+      <details key="end" value="2517"/>
+      <details key="line" value="105"/>
+    </eAnnotations>
+    <eAnnotations source="positions.162" references="/0/filterTaskRulesByResult/%/%/%/%.5">
+      <details key="start" value="2517"/>
+      <details key="end" value="2595"/>
+      <details key="line" value="106"/>
+    </eAnnotations>
+    <eAnnotations source="positions.163" references="/0/filterTaskRulesByResult/%/%/%/%.5/%">
+      <details key="start" value="2576"/>
+      <details key="end" value="2577"/>
+      <details key="line" value="107"/>
+    </eAnnotations>
+    <eAnnotations source="positions.164" references="/0/filterTaskRulesByResult/%/%/%/%.5/taskRule">
+      <details key="start" value="2578"/>
+      <details key="end" value="2586"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.165" references="/0/filterTaskRulesByResult/%/%/%/%.5/%.1">
+      <details key="start" value="2588"/>
+      <details key="end" value="2589"/>
+      <details key="line" value="108"/>
+    </eAnnotations>
+    <eAnnotations source="positions.166" references="/0/filterTaskRulesByResult/%/%/%/%.5/taskRule.1">
+      <details key="start" value="2523"/>
+      <details key="end" value="2542"/>
+      <details key="line" value="106"/>
+    </eAnnotations>
+    <eAnnotations source="positions.167" references="/0/filterTaskRulesByResult/%/%/%/%.5/traineeRules">
+      <details key="start" value="2545"/>
+      <details key="end" value="2557"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.168" references="/0/filterTaskRulesByResult/%/%/%/%.5/%.2">
+      <details key="start" value="2569"/>
+      <details key="end" value="2573"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.169" references="/0/filterTaskRulesByResult/%/%/%/%.6">
+      <details key="start" value="2596"/>
+      <details key="end" value="2597"/>
+      <details key="line" value="109"/>
+    </eAnnotations>
+    <eAnnotations source="positions.170" references="/0/filterTaskRulesByResult/%/%/%/traineeRules">
+      <details key="start" value="2241"/>
+      <details key="end" value="2354"/>
+      <details key="line" value="95"/>
+    </eAnnotations>
+    <eAnnotations source="positions.171" references="/0/filterTaskRulesByResult/%/%/%/traineeRules/select">
+      <details key="start" value="2280"/>
+      <details key="end" value="2355"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.172" references="/0/filterTaskRulesByResult/%/%/%/traineeRules/select/%">
+      <details key="start" value="2280"/>
+      <details key="end" value="2293"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.173" references="/0/filterTaskRulesByResult/%/%/%/traineeRules/select/%/tps">
+      <details key="start" value="2280"/>
+      <details key="end" value="2283"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.174" references="/0/filterTaskRulesByResult/%/%/%/traineeRules/select/%.1">
+      <details key="start" value="2313"/>
+      <details key="end" value="2354"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.175" references="/0/filterTaskRulesByResult/%/%/%/traineeRules/select/%.1/%">
+      <details key="start" value="2313"/>
+      <details key="end" value="2328"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.176" references="/0/filterTaskRulesByResult/%/%/%/traineeRules/select/%.1/%/taskRule">
+      <details key="start" value="2313"/>
+      <details key="end" value="2321"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.177" references="/0/filterTaskRulesByResult/%/%/%/traineeRules/select/%.1/%.1">
+      <details key="start" value="2331"/>
+      <details key="end" value="2354"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.178" references="/0/filterTaskRulesByResult/%/%/%/traineeRules/select/taskRule">
+      <details key="start" value="2302"/>
+      <details key="end" value="2310"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.179" references="/0/filterTaskRulesByResult/%/%/juniorRules">
+      <details key="start" value="2123"/>
+      <details key="end" value="2234"/>
+      <details key="line" value="94"/>
+    </eAnnotations>
+    <eAnnotations source="positions.180" references="/0/filterTaskRulesByResult/%/%/juniorRules/select">
+      <details key="start" value="2161"/>
+      <details key="end" value="2235"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.181" references="/0/filterTaskRulesByResult/%/%/juniorRules/select/%">
+      <details key="start" value="2161"/>
+      <details key="end" value="2174"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.182" references="/0/filterTaskRulesByResult/%/%/juniorRules/select/%/tps">
+      <details key="start" value="2161"/>
+      <details key="end" value="2164"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.183" references="/0/filterTaskRulesByResult/%/%/juniorRules/select/%.1">
+      <details key="start" value="2194"/>
+      <details key="end" value="2234"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.184" references="/0/filterTaskRulesByResult/%/%/juniorRules/select/%.1/%">
+      <details key="start" value="2194"/>
+      <details key="end" value="2209"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.185" references="/0/filterTaskRulesByResult/%/%/juniorRules/select/%.1/%/taskRule">
+      <details key="start" value="2194"/>
+      <details key="end" value="2202"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.186" references="/0/filterTaskRulesByResult/%/%/juniorRules/select/%.1/%.1">
+      <details key="start" value="2212"/>
+      <details key="end" value="2234"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.187" references="/0/filterTaskRulesByResult/%/%/juniorRules/select/taskRule">
+      <details key="start" value="2183"/>
+      <details key="end" value="2191"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.188" references="/0/filterTaskRulesByResult/%/seniorRules">
+      <details key="start" value="2005"/>
+      <details key="end" value="2116"/>
+      <details key="line" value="93"/>
+    </eAnnotations>
+    <eAnnotations source="positions.189" references="/0/filterTaskRulesByResult/%/seniorRules/select">
+      <details key="start" value="2043"/>
+      <details key="end" value="2117"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.190" references="/0/filterTaskRulesByResult/%/seniorRules/select/%">
+      <details key="start" value="2043"/>
+      <details key="end" value="2056"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.191" references="/0/filterTaskRulesByResult/%/seniorRules/select/%/tps">
+      <details key="start" value="2043"/>
+      <details key="end" value="2046"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.192" references="/0/filterTaskRulesByResult/%/seniorRules/select/%.1">
+      <details key="start" value="2076"/>
+      <details key="end" value="2116"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.193" references="/0/filterTaskRulesByResult/%/seniorRules/select/%.1/%">
+      <details key="start" value="2076"/>
+      <details key="end" value="2091"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.194" references="/0/filterTaskRulesByResult/%/seniorRules/select/%.1/%/taskRule">
+      <details key="start" value="2076"/>
+      <details key="end" value="2084"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.195" references="/0/filterTaskRulesByResult/%/seniorRules/select/%.1/%.1">
+      <details key="start" value="2094"/>
+      <details key="end" value="2116"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.196" references="/0/filterTaskRulesByResult/%/seniorRules/select/taskRule">
+      <details key="start" value="2065"/>
+      <details key="end" value="2073"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.197" references="/0/filterTaskRulesByResult/%.1">
+      <details key="start" value="2618"/>
+      <details key="end" value="2619"/>
+      <details key="line" value="113"/>
+    </eAnnotations>
+    <eAnnotations source="positions.198" references="/0/filterTaskRulesByResult/tps">
+      <details key="start" value="1988"/>
+      <details key="end" value="1997"/>
+      <details key="line" value="92"/>
+    </eAnnotations>
+    <eAnnotations source="positions.199" references="/0/filterTaskRulesByShift">
+      <details key="start" value="2632"/>
+      <details key="end" value="3590"/>
+      <details key="line" value="116"/>
+    </eAnnotations>
+    <eAnnotations source="positions.200" references="/0/filterTaskRulesByShift/%">
+      <details key="start" value="2684"/>
+      <details key="end" value="3578"/>
+      <details key="line" value="117"/>
+    </eAnnotations>
+    <eAnnotations source="positions.201" references="/0/filterTaskRulesByShift/%/%">
+      <details key="start" value="2888"/>
+      <details key="end" value="3571"/>
+      <details key="line" value="119"/>
+    </eAnnotations>
+    <eAnnotations source="positions.202" references="/0/filterTaskRulesByShift/%/%/%">
+      <details key="start" value="3100"/>
+      <details key="end" value="3564"/>
+      <details key="line" value="121"/>
+    </eAnnotations>
+    <eAnnotations source="positions.203" references="/0/filterTaskRulesByShift/%/%/%/%">
+      <details key="start" value="3308"/>
+      <details key="end" value="3309"/>
+      <details key="line" value="123"/>
+    </eAnnotations>
+    <eAnnotations source="positions.204" references="/0/filterTaskRulesByShift/%/%/%/%.1">
+      <details key="start" value="3309"/>
+      <details key="end" value="3388"/>
+      <details key="line" value="124"/>
+    </eAnnotations>
+    <eAnnotations source="positions.205" references="/0/filterTaskRulesByShift/%/%/%/%.1/%">
+      <details key="start" value="3369"/>
+      <details key="end" value="3370"/>
+      <details key="line" value="125"/>
+    </eAnnotations>
+    <eAnnotations source="positions.206" references="/0/filterTaskRulesByShift/%/%/%/%.1/taskRule">
+      <details key="start" value="3371"/>
+      <details key="end" value="3379"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.207" references="/0/filterTaskRulesByShift/%/%/%/%.1/%.1">
+      <details key="start" value="3381"/>
+      <details key="end" value="3382"/>
+      <details key="line" value="126"/>
+    </eAnnotations>
+    <eAnnotations source="positions.208" references="/0/filterTaskRulesByShift/%/%/%/%.1/taskRule.1">
+      <details key="start" value="3315"/>
+      <details key="end" value="3334"/>
+      <details key="line" value="124"/>
+    </eAnnotations>
+    <eAnnotations source="positions.209" references="/0/filterTaskRulesByShift/%/%/%/%.1/dayShiftRules">
+      <details key="start" value="3337"/>
+      <details key="end" value="3350"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.210" references="/0/filterTaskRulesByShift/%/%/%/%.1/%.2">
+      <details key="start" value="3362"/>
+      <details key="end" value="3366"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.211" references="/0/filterTaskRulesByShift/%/%/%/%.2">
+      <details key="start" value="3389"/>
+      <details key="end" value="3390"/>
+      <details key="line" value="127"/>
+    </eAnnotations>
+    <eAnnotations source="positions.212" references="/0/filterTaskRulesByShift/%/%/%/%.3">
+      <details key="start" value="3390"/>
+      <details key="end" value="3473"/>
+      <details key="line" value="128"/>
+    </eAnnotations>
+    <eAnnotations source="positions.213" references="/0/filterTaskRulesByShift/%/%/%/%.3/%">
+      <details key="start" value="3454"/>
+      <details key="end" value="3455"/>
+      <details key="line" value="129"/>
+    </eAnnotations>
+    <eAnnotations source="positions.214" references="/0/filterTaskRulesByShift/%/%/%/%.3/taskRule">
+      <details key="start" value="3456"/>
+      <details key="end" value="3464"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.215" references="/0/filterTaskRulesByShift/%/%/%/%.3/%.1">
+      <details key="start" value="3466"/>
+      <details key="end" value="3467"/>
+      <details key="line" value="130"/>
+    </eAnnotations>
+    <eAnnotations source="positions.216" references="/0/filterTaskRulesByShift/%/%/%/%.3/taskRule.1">
+      <details key="start" value="3396"/>
+      <details key="end" value="3415"/>
+      <details key="line" value="128"/>
+    </eAnnotations>
+    <eAnnotations source="positions.217" references="/0/filterTaskRulesByShift/%/%/%/%.3/eveningShiftRules">
+      <details key="start" value="3418"/>
+      <details key="end" value="3435"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.218" references="/0/filterTaskRulesByShift/%/%/%/%.3/%.2">
+      <details key="start" value="3447"/>
+      <details key="end" value="3451"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.219" references="/0/filterTaskRulesByShift/%/%/%/%.4">
+      <details key="start" value="3474"/>
+      <details key="end" value="3475"/>
+      <details key="line" value="131"/>
+    </eAnnotations>
+    <eAnnotations source="positions.220" references="/0/filterTaskRulesByShift/%/%/%/%.5">
+      <details key="start" value="3475"/>
+      <details key="end" value="3556"/>
+      <details key="line" value="132"/>
+    </eAnnotations>
+    <eAnnotations source="positions.221" references="/0/filterTaskRulesByShift/%/%/%/%.5/%">
+      <details key="start" value="3537"/>
+      <details key="end" value="3538"/>
+      <details key="line" value="133"/>
+    </eAnnotations>
+    <eAnnotations source="positions.222" references="/0/filterTaskRulesByShift/%/%/%/%.5/taskRule">
+      <details key="start" value="3539"/>
+      <details key="end" value="3547"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.223" references="/0/filterTaskRulesByShift/%/%/%/%.5/%.1">
+      <details key="start" value="3549"/>
+      <details key="end" value="3550"/>
+      <details key="line" value="134"/>
+    </eAnnotations>
+    <eAnnotations source="positions.224" references="/0/filterTaskRulesByShift/%/%/%/%.5/taskRule.1">
+      <details key="start" value="3481"/>
+      <details key="end" value="3500"/>
+      <details key="line" value="132"/>
+    </eAnnotations>
+    <eAnnotations source="positions.225" references="/0/filterTaskRulesByShift/%/%/%/%.5/nightShiftRules">
+      <details key="start" value="3503"/>
+      <details key="end" value="3518"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.226" references="/0/filterTaskRulesByShift/%/%/%/%.5/%.2">
+      <details key="start" value="3530"/>
+      <details key="end" value="3534"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.227" references="/0/filterTaskRulesByShift/%/%/%/%.6">
+      <details key="start" value="3557"/>
+      <details key="end" value="3558"/>
+      <details key="line" value="135"/>
+    </eAnnotations>
+    <eAnnotations source="positions.228" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules">
+      <details key="start" value="3105"/>
+      <details key="end" value="3306"/>
+      <details key="line" value="121"/>
+    </eAnnotations>
+    <eAnnotations source="positions.229" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select">
+      <details key="start" value="3147"/>
+      <details key="end" value="3307"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.230" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/%">
+      <details key="start" value="3147"/>
+      <details key="end" value="3160"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.231" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/%/tps">
+      <details key="start" value="3147"/>
+      <details key="end" value="3150"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.232" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/%.1">
+      <details key="start" value="3180"/>
+      <details key="end" value="3306"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.233" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/%.1/%">
+      <details key="start" value="3180"/>
+      <details key="end" value="3228"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.234" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/%.1/%/%">
+      <details key="start" value="3180"/>
+      <details key="end" value="3199"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.235" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/%.1/%/%/taskRule">
+      <details key="start" value="3180"/>
+      <details key="end" value="3188"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.236" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/%.1/%/%.1">
+      <details key="start" value="3212"/>
+      <details key="end" value="3227"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.237" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/%.1/%.1">
+      <details key="start" value="3234"/>
+      <details key="end" value="3306"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.238" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/%.1/%.1/%">
+      <details key="start" value="3234"/>
+      <details key="end" value="3286"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.239" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/%.1/%.1/%/%">
+      <details key="start" value="3234"/>
+      <details key="end" value="3280"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.240" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/%.1/%.1/%/%/%">
+      <details key="start" value="3234"/>
+      <details key="end" value="3253"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.241" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/%.1/%.1/%/%/%/taskRule">
+      <details key="start" value="3234"/>
+      <details key="end" value="3242"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.242" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/%.1/%.1/%/%/%.1">
+      <details key="start" value="3264"/>
+      <details key="end" value="3279"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.243" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/%.1/%.1/%.1">
+      <details key="start" value="3289"/>
+      <details key="end" value="3306"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.244" references="/0/filterTaskRulesByShift/%/%/%/nightShiftRules/select/taskRule">
+      <details key="start" value="3169"/>
+      <details key="end" value="3177"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.245" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules">
+      <details key="start" value="2893"/>
+      <details key="end" value="3098"/>
+      <details key="line" value="119"/>
+    </eAnnotations>
+    <eAnnotations source="positions.246" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select">
+      <details key="start" value="2937"/>
+      <details key="end" value="3099"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.247" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/%">
+      <details key="start" value="2937"/>
+      <details key="end" value="2950"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.248" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/%/tps">
+      <details key="start" value="2937"/>
+      <details key="end" value="2940"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.249" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/%.1">
+      <details key="start" value="2970"/>
+      <details key="end" value="3098"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.250" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/%.1/%">
+      <details key="start" value="2970"/>
+      <details key="end" value="3018"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.251" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/%.1/%/%">
+      <details key="start" value="2970"/>
+      <details key="end" value="2989"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.252" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/%.1/%/%/taskRule">
+      <details key="start" value="2970"/>
+      <details key="end" value="2978"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.253" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/%.1/%/%.1">
+      <details key="start" value="3002"/>
+      <details key="end" value="3017"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.254" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/%.1/%.1">
+      <details key="start" value="3024"/>
+      <details key="end" value="3098"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.255" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/%.1/%.1/%">
+      <details key="start" value="3024"/>
+      <details key="end" value="3076"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.256" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/%.1/%.1/%/%">
+      <details key="start" value="3024"/>
+      <details key="end" value="3070"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.257" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/%.1/%.1/%/%/%">
+      <details key="start" value="3024"/>
+      <details key="end" value="3043"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.258" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/%.1/%.1/%/%/%/taskRule">
+      <details key="start" value="3024"/>
+      <details key="end" value="3032"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.259" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/%.1/%.1/%/%/%.1">
+      <details key="start" value="3054"/>
+      <details key="end" value="3069"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.260" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/%.1/%.1/%.1">
+      <details key="start" value="3079"/>
+      <details key="end" value="3098"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.261" references="/0/filterTaskRulesByShift/%/%/eveningShiftRules/select/taskRule">
+      <details key="start" value="2959"/>
+      <details key="end" value="2967"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.262" references="/0/filterTaskRulesByShift/%/dayShiftRules">
+      <details key="start" value="2689"/>
+      <details key="end" value="2886"/>
+      <details key="line" value="117"/>
+    </eAnnotations>
+    <eAnnotations source="positions.263" references="/0/filterTaskRulesByShift/%/dayShiftRules/select">
+      <details key="start" value="2729"/>
+      <details key="end" value="2887"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.264" references="/0/filterTaskRulesByShift/%/dayShiftRules/select/%">
+      <details key="start" value="2729"/>
+      <details key="end" value="2742"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.265" references="/0/filterTaskRulesByShift/%/dayShiftRules/select/%/tps">
+      <details key="start" value="2729"/>
+      <details key="end" value="2732"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.266" references="/0/filterTaskRulesByShift/%/dayShiftRules/select/%.1">
+      <details key="start" value="2762"/>
+      <details key="end" value="2886"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.267" references="/0/filterTaskRulesByShift/%/dayShiftRules/select/%.1/%">
+      <details key="start" value="2762"/>
+      <details key="end" value="2810"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.268" references="/0/filterTaskRulesByShift/%/dayShiftRules/select/%.1/%/%">
+      <details key="start" value="2762"/>
+      <details key="end" value="2781"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.269" references="/0/filterTaskRulesByShift/%/dayShiftRules/select/%.1/%/%/taskRule">
+      <details key="start" value="2762"/>
+      <details key="end" value="2770"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.270" references="/0/filterTaskRulesByShift/%/dayShiftRules/select/%.1/%/%.1">
+      <details key="start" value="2794"/>
+      <details key="end" value="2809"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.271" references="/0/filterTaskRulesByShift/%/dayShiftRules/select/%.1/%.1">
+      <details key="start" value="2816"/>
+      <details key="end" value="2886"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.272" references="/0/filterTaskRulesByShift/%/dayShiftRules/select/%.1/%.1/%">
+      <details key="start" value="2816"/>
+      <details key="end" value="2868"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.273" references="/0/filterTaskRulesByShift/%/dayShiftRules/select/%.1/%.1/%/%">
+      <details key="start" value="2816"/>
+      <details key="end" value="2862"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.274" references="/0/filterTaskRulesByShift/%/dayShiftRules/select/%.1/%.1/%/%/%">
+      <details key="start" value="2816"/>
+      <details key="end" value="2835"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.275" references="/0/filterTaskRulesByShift/%/dayShiftRules/select/%.1/%.1/%/%/%/taskRule">
+      <details key="start" value="2816"/>
+      <details key="end" value="2824"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.276" references="/0/filterTaskRulesByShift/%/dayShiftRules/select/%.1/%.1/%/%/%.1">
+      <details key="start" value="2846"/>
+      <details key="end" value="2861"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.277" references="/0/filterTaskRulesByShift/%/dayShiftRules/select/%.1/%.1/%.1">
+      <details key="start" value="2871"/>
+      <details key="end" value="2886"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.278" references="/0/filterTaskRulesByShift/%/dayShiftRules/select/taskRule">
+      <details key="start" value="2751"/>
+      <details key="end" value="2759"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.279" references="/0/filterTaskRulesByShift/tps">
+      <details key="start" value="2672"/>
+      <details key="end" value="2681"/>
+      <details key="line" value="116"/>
+    </eAnnotations>
+  </ecore:EAnnotation>
+</xmi:XMI>

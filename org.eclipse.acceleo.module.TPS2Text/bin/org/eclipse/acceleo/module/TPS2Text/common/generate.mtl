@@ -1,0 +1,139 @@
+[comment encoding = UTF-8 /]
+[module generate('http://www.example.org/tps')]
+
+
+[template public generate(aTPS : TPS)]
+[comment @main/]
+[file('tps.html', false, 'UTF-8')]
+
+Task Rules: 
+[for (aRule : TaskRule | aTPS.taskRules) separator('\n')]
+	[taskRule(aRule)/]
+[/for]
+
+Filtering the Task Rules:
+[dropdownMenu(aTPS)/]
+
+Task Assignment:
+	
+[/file]
+[/template]
+
+[template public taskRule(aRule : TaskRule)]
+IF
+	[expression(aRule.expression)/]
+THEN
+	[aRule.result/]
+
+
+[/template]
+
+[template public expression(anExpression : Expression)]
+
+[if (anExpression.oclIsTypeOf(AtomicExpression))]
+	[atomicExpression(anExpression.oclAsType(AtomicExpression))/]
+[else]
+	[compoundExpression(anExpression.oclAsType(CompoundExpression))/]
+[/if]
+
+[/template]
+
+[template public atomicExpression(anAtomic : AtomicExpression)]
+
+[if (anAtomic.oclIsTypeOf(DifficultyExpression))]
+	[difficultyExpression(anAtomic.oclAsType(DifficultyExpression))/]
+[elseif (anAtomic.oclIsTypeOf(ShiftExpression))]
+	[shiftExpression(anAtomic.oclAsType(ShiftExpression))/]
+[else]
+	[durationExpression(anAtomic.oclAsType(DurationExpression))/]
+[/if]
+
+[/template]
+
+[template public compoundExpression(aCompound : CompoundExpression)]
+
+
+[/template]
+
+[template public difficultyExpression(aDifficulty : DifficultyExpression)]
+
+[aDifficulty.difficulty/]
+
+[/template]
+
+[template public shiftExpression(aShift : ShiftExpression)]
+
+
+
+[/template]
+
+[template public durationExpression(aDuration : DurationExpression)]
+
+[if aDuration.operator = ComparisonOperator :: LESSTHAN]
+	< [aDuration.minutes/] min
+[elseif aDuration.operator = ComparisonOperator :: LESSTHANOREQUAL]
+	<= [aDuration.minutes/] min
+[elseif aDuration.operator = ComparisonOperator :: EQUAL]
+	= [aDuration.minutes/] min
+[elseif aDuration.operator = ComparisonOperator :: GREATERTHANOREQUAL]
+	>= [aDuration.minutes/] min
+[else]
+	> [aDuration.minutes/] min
+[/if]
+
+[/template]
+
+
+[template public dropdownMenu(aTPS : TPS)]
+
+
+[/template]
+
+[template public filterTaskRulesByResult(tps : TPS)]
+[let seniorRules : OrderedSet(TaskRule) = tps.taskRules->select(taskRule | taskRule.result = SeniorityLevel::SENIOR)]
+[let juniorRules : OrderedSet(TaskRule) = tps.taskRules->select(taskRule | taskRule.result = SeniorityLevel::JUNIOR)]
+[let traineeRules : OrderedSet(TaskRule) = tps.taskRules->select(taskRule | taskRule.result = SeniorityLevel::TRAINEE)]
+
+
+[for (taskRule : TaskRule | seniorRules) separator('\n')]
+	[taskRule/]	
+[/for]
+
+[for (taskRule : TaskRule | juniorRules) separator('\n')]
+	[taskRule/]
+[/for]
+
+[for (taskRule : TaskRule | traineeRules) separator('\n')]
+	[taskRule/]
+[/for]
+
+[/let]
+[/let]
+[/let]
+
+[/template]
+
+[template public filterTaskRulesByShift(tps : TPS)]
+[let dayShiftRules : OrderedSet(TaskRule) = tps.taskRules->select(taskRule | taskRule.expression.oclIsTypeOf(ShiftExpression) and 
+taskRule.expression.oclAsType(ShiftExpression).shift = Shift::DAYSHIFT)]
+[let eveningShiftRules : OrderedSet(TaskRule) = tps.taskRules->select(taskRule | taskRule.expression.oclIsTypeOf(ShiftExpression) and 
+taskRule.expression.oclAsType(ShiftExpression).shift = Shift::EVENINGSHIFT)]
+[let nightShiftRules : OrderedSet(TaskRule) = tps.taskRules->select(taskRule | taskRule.expression.oclIsTypeOf(ShiftExpression) and 
+taskRule.expression.oclAsType(ShiftExpression).shift = Shift::NIGHTSHIFT)]
+
+[for (taskRule : TaskRule | dayShiftRules) separator('\n')]
+	[taskRule/]
+[/for]
+
+[for (taskRule : TaskRule | eveningShiftRules) separator('\n')]
+	[taskRule/]
+[/for]
+
+[for (taskRule : TaskRule | nightShiftRules) separator('\n')]
+	[taskRule/]
+[/for]
+
+[/let]
+[/let]
+[/let]
+[/template]
