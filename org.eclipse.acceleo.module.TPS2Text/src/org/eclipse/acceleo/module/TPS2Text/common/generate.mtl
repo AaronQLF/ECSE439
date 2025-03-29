@@ -2,6 +2,8 @@
 [module generate('http://www.example.org/tps')]
 
 
+
+
 [template public generate(aTPS : TPS)]
 [comment @main/]
 [file('tps.html', false, 'UTF-8')]
@@ -30,10 +32,17 @@ THEN
 
 [template public expression(anExpression : Expression)]
 
-[if (anExpression.oclIsTypeOf(AtomicExpression))]
-	[atomicExpression(anExpression.oclAsType(AtomicExpression))/]
-[else]
+[if (anExpression.oclIsTypeOf(DifficultyExpression))]
+	[difficultyExpression(anExpression.oclAsType(DifficultyExpression))/]
+[elseif (anExpression.oclIsTypeOf(ShiftExpression))]
+	[shiftExpression(anExpression.oclAsType(ShiftExpression))/]
+[elseif (anExpression.oclIsTypeOf(DurationExpression))]
+	[durationExpression(anExpression.oclAsType(DurationExpression))/]
+[elseif (anExpression.oclIsTypeOf(CompoundExpression))]
 	[compoundExpression(anExpression.oclAsType(CompoundExpression))/]
+[else]
+	[atomicExpression(anExpression.oclAsType(AtomicExpression))/]
+
 [/if]
 
 [/template]
@@ -50,11 +59,6 @@ THEN
 
 [/template]
 
-[template public compoundExpression(aCompound : CompoundExpression)]
-
-
-[/template]
-
 [template public difficultyExpression(aDifficulty : DifficultyExpression)]
 
 [aDifficulty.difficulty/]
@@ -62,8 +66,8 @@ THEN
 [/template]
 
 [template public shiftExpression(aShift : ShiftExpression)]
-
-
+	
+[aShift.shift/]
 
 [/template]
 
@@ -80,6 +84,13 @@ THEN
 [else]
 	> [aDuration.minutes/] min
 [/if]
+
+[/template]
+
+[template public compoundExpression(aCompound : CompoundExpression)]
+
+([expression(aCompound.LHS)/] [aCompound.operator/] [expression(aCompound.RHS)/])
+
 
 [/template]
 

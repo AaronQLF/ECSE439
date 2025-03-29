@@ -1,0 +1,172 @@
+
+Task Rules: 
+	IF
+		
+			
+				>= 200 min
+			
+			
+		
+		
+	THEN
+		SENIOR
+	
+	
+
+	IF
+		
+			
+			(
+				
+					> 100 min
+				
+				
+			
+			 OR 
+			 	
+			 	MODERATE
+			 	
+			 
+			 )
+			
+			
+		
+		
+	THEN
+		JUNIOR
+	
+	
+
+	IF
+		
+			
+			(
+				
+				EASY
+				
+			
+			 AND 
+			 	
+			 	(
+			 		
+			 			< 100 min
+			 		
+			 		
+			 	
+			 	 OR 
+			 	 		
+			 	 	DAYSHIFT
+			 	 	
+			 	 
+			 	 )
+			 	
+			 	
+			 
+			 )
+			
+			
+		
+		
+	THEN
+		TRAINEE
+	
+	
+
+	IF
+		
+			
+			(
+				
+				(
+					
+					(
+						
+						EASY
+						
+					
+					 AND 
+					 	
+					 		>= 100 min
+					 	
+					 	
+					 
+					 )
+					
+					
+				
+				 OR 
+				 	
+				 	(
+				 		
+				 		(
+				 			
+				 			MODERATE
+				 			
+				 		
+				 		 AND 
+				 		 	
+				 		 		> 90 min
+				 		 	
+				 		 	
+				 		 
+				 		 )
+				 		
+				 		
+				 	
+				 	 AND 
+				 	 	
+				 	 	(
+				 	 		
+				 	 		MODERATE
+				 	 		
+				 	 	
+				 	 	 AND 
+				 	 	 	
+				 	 	 		< 180 min
+				 	 	 	
+				 	 	 	
+				 	 	 
+				 	 	 )
+				 	 	
+				 	 	
+				 	 
+				 	 )
+				 	
+				 	
+				 
+				 )
+				
+				
+			
+			 OR 
+			 	
+			 	(
+			 		
+			 		HARD
+			 		
+			 	
+			 	 AND 
+			 	 		
+			 	 	DAYSHIFT
+			 	 	
+			 	 
+			 	 )
+			 	
+			 	
+			 
+			 )
+			
+			
+		
+		
+	THEN
+		JUNIOR
+	
+	
+
+Filtering the Task Rules:
+
+
+
+Task Assignment:
+	

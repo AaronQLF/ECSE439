@@ -23,6 +23,9 @@ import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+
+import tps.TpsPackage;
 
 /**
  * Entry point of the 'Generate' generation module.
@@ -335,11 +338,15 @@ public class Generate extends AbstractAcceleoGenerator {
      * 
      * @param resourceSet
      *            The resource set which registry has to be updated.
-     * @generated
+     * @generated NOT
      */
     @Override
     public void registerPackages(ResourceSet resourceSet) {
         super.registerPackages(resourceSet);
+        if (!isInWorkspace(TpsPackage.class)) {
+        	 // The normal package registration if your metamodel is in a plugin.
+        	 resourceSet.getPackageRegistry().put(TpsPackage.eNS_URI, TpsPackage.eINSTANCE);
+        	 }
         
         /*
          * If you want to change the content of this method, do NOT forget to change the "@generated"
@@ -379,11 +386,13 @@ public class Generate extends AbstractAcceleoGenerator {
      * 
      * @param resourceSet
      *            The resource set which registry has to be updated.
-     * @generated
+     * @generated NOT
      */
     @Override
     public void registerResourceFactories(ResourceSet resourceSet) {
         super.registerResourceFactories(resourceSet);
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().
+        put("tps", new XMIResourceFactoryImpl());
         /*
          * If you want to change the content of this method, do NOT forget to change the "@generated"
          * tag in the Javadoc of this method to "@generated NOT". Without this new tag, any compilation
