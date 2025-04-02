@@ -1,23 +1,138 @@
 [comment encoding = UTF-8 /]
 [module generate('http://www.example.org/tps')]
 
-
-
+[import org::eclipse::acceleo::module::TPS2Text::services::AutoTPSService/]
 
 [template public generate(aTPS : TPS)]
 [comment @main/]
 [file('tps.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Planning System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #1e1e1e;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #bb86fc;
+        }
+        #taskRules {
+            margin-top: 15px;
+        }
+        .taskRule {
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #2d2d2d;
+            border-left: 3px solid #03dac6;
+        }
+        .worker, .task {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px;
+            background-color: #2c2c2c;
+            border-radius: 4px;
+            border: 1px solid #444;
+        }
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #444;
+            margin-bottom: 10px;
+            background-color: #333;
+            color: #e0e0e0;
+        }
+        .assignment {
+            margin-top: 8px;
+            padding: 5px;
+            background-color: #263238;
+        }
+        .assignment-results {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #252525;
+            border: 1px solid #444;
+            border-radius: 4px;
+        }
+        .assignment-results ul {
+            padding-left: 20px;
+            color: #e0e0e0;
+        }
+        h1 {
+            color: #03dac6;
+            border-bottom: 2px solid #03dac6;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #cf6679;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task Planning System</h1>
 
-<p>Task Rules:</p>
-[dropdownMenu(aTPS)/]
+    <!-- Workers and Tasks Section -->
+    <div class="section">
+        <div class="section-title">Workers</div>
+        <div id="workers">
+            [for (aWorker : Worker | aTPS.workers)]
+                <div class="worker">
+                    <strong style="color: #bb86fc;">[aWorker.name/]</strong> 
+                    <span style="color: #03dac6;">([aWorker.competency/])</span>
+                </div>
+            [/for]
+        </div>
+    </div>
 
-<p>Task Assignment:</p>
-	
+    <div class="section">
+        <div class="section-title">Tasks</div>
+        <div id="tasks">
+            [for (aTask : Task | aTPS.tasks)]
+                <div class="task">
+                    <strong style="color: #bb86fc;">[aTask.name/]</strong> - 
+                    <span style="color: #cf6679;">Difficulty: [aTask.difficulty/]</span>, 
+                    <span style="color: #03dac6;">Duration: [aTask.duration/] min</span>
+                </div>
+            [/for]
+        </div>
+    </div>
+
+    <!-- Task Rules Section -->
+    <div class="section">
+        <div class="section-title">Task Rules</div>
+        [dropdownMenu(aTPS)/]
+    </div>
+
+    <!-- Task Assignment Section -->
+    <div class="section">
+        <div class="section-title">Task Assignment</div>
+        [comment Call the AutoTPS service to get task assignment results /]
+        [generateTaskAssignments(aTPS)/]
+    </div>
+</body>
+</html>
 [/file]
 [/template]
 
 [template public taskRule(aRule : TaskRule)]
-IF [expression(aRule.expression)/] THEN [aRule.result/]
+<span style="color: #03dac6;">IF</span> <span style="color: #e0e0e0;">[expression(aRule.expression)/]</span> <span style="color: #03dac6;">THEN</span> <span style="color: #cf6679;">[aRule.result/]</span>
 [/template]
 
 [template public expression(anExpression : Expression)]
@@ -72,6 +187,7 @@ IF [expression(aRule.expression)/] THEN [aRule.result/]
 
 
 [template public dropdownMenu(aTPS : TPS)]
+<label for="filter" style="color: #bb86fc; margin-right: 10px;">Filter Rules:</label>
 <select name="filter" id="filter" onchange="filterTaskRules()">
 	<option value="ALL">All</option>
     <option value="SENIOR">Senior</option>
@@ -87,7 +203,8 @@ IF [expression(aRule.expression)/] THEN [aRule.result/]
     <div class="taskRule" 
          data-result="[aRule.result/]" 
          data-shift="[extractShift(aRule.expression).trim()/]">
-        [taskRule(aRule)/]
+        <span style="color: #03dac6;">IF</span> <span style="color: #e0e0e0;">[expression(aRule.expression)/]</span> 
+        <span style="color: #03dac6;">THEN</span> <span style="color: #cf6679;">[aRule.result/]</span>
     </div>
 [/for]
 </div>
@@ -95,12 +212,12 @@ IF [expression(aRule.expression)/] THEN [aRule.result/]
 <script>
 function filterTaskRules() {
     const filter = document.getElementById('filter').value;
-	console.log('Selected filter:', filter);
+    console.log('Selected filter:', filter);
     const taskRules = document.querySelectorAll('.taskRule');
     taskRules.forEach(rule => {
         const result = rule.getAttribute('data-result');
         const shift = rule.getAttribute('data-shift');
-        if (filter === "ALL" ||result === filter || shift === filter) {
+        if (filter === "ALL" || result === filter || shift === filter) {
             rule.style.display = 'block';
         } else {
             rule.style.display = 'none';
@@ -115,4 +232,6 @@ function filterTaskRules() {
 [elseif (anExpression.oclIsTypeOf(CompoundExpression))][extractShift(anExpression.oclAsType(CompoundExpression).LHS)/][extractShift(anExpression.oclAsType(CompoundExpression).RHS)/]
 [/if]
 [/template]
+
+[query public generateTaskAssignments(aTPS : TPS) : String = invoke('org.eclipse.acceleo.module.TPS2Text.services.AutoTPSService', 'generateTaskAssignments(org.eclipse.emf.ecore.EObject)', Sequence{aTPS}) /]
 
