@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Planning System</title>
     <style>
-        body {
+	        body {
             font-family: Arial, sans-serif;
             margin: 20px;
             line-height: 1.6;
@@ -94,8 +94,10 @@
         <div id="workers">
             [for (aWorker : Worker | aTPS.workers)]
                 <div class="worker">
-                    <strong style="color: #bb86fc;">[aWorker.name/]</strong> 
-                    <span style="color: #03dac6;">([aWorker.competency/])</span>
+                    <strong style="color: #bb86fc;">Name: [aWorker.name/]</strong> 
+                    <span style="color: #03dac6;">Seniority: ([aWorker.seniorityLevel/])</span>
+					<span style="color: #03dac6;">Employee Number: ([aWorker.employeeNumber/])</span>
+					<span style="color: #03dac6;">Active: ([aWorker.active/] min</span>
                 </div>
             [/for]
         </div>
@@ -106,9 +108,10 @@
         <div id="tasks">
             [for (aTask : Task | aTPS.tasks)]
                 <div class="task">
-                    <strong style="color: #bb86fc;">[aTask.name/]</strong> - 
-                    <span style="color: #cf6679;">Difficulty: [aTask.difficulty/]</span>, 
-                    <span style="color: #03dac6;">Duration: [aTask.duration/] min</span>
+                    <strong style="color: #bb86fc;">[aTask.ID/]</strong> - 
+                    <span style="color: #cf6679;">Difficulty: [aTask.difficultyLevel/]</span>, 
+                    <span style="color: #03dac6;">Duration: [aTask.duration/] </span>
+					<span style="color: #03dac6;">StartTime: [aTask.startTime/] min</span>
                 </div>
             [/for]
         </div>
@@ -135,6 +138,7 @@
 <span style="color: #03dac6;">IF</span> <span style="color: #e0e0e0;">[expression(aRule.expression)/]</span> <span style="color: #03dac6;">THEN</span> <span style="color: #cf6679;">[aRule.result/]</span>
 [/template]
 
+[comment check expression type/]
 [template public expression(anExpression : Expression)]
 [if (anExpression.oclIsTypeOf(DifficultyExpression))]
 [difficultyExpression(anExpression.oclAsType(DifficultyExpression))/]
@@ -185,7 +189,7 @@
 ([expression(aCompound.LHS)/] [aCompound.operator/] [expression(aCompound.RHS)/])
 [/template]
 
-
+[comment create drop down menu with HTML, outputting all task rules initially/]
 [template public dropdownMenu(aTPS : TPS)]
 <label for="filter" style="color: #bb86fc; margin-right: 10px;">Filter Rules:</label>
 <select name="filter" id="filter" onchange="filterTaskRules()">
@@ -198,6 +202,7 @@
     <option value="NIGHTSHIFT">Night Shift</option>
 </select>
 
+[comment store the result and shift values of each task rule for filtering, and display the task rules/]
 <div id="taskRules">
 [for (aRule : TaskRule | aTPS.taskRules)]
     <div class="taskRule" 
@@ -209,6 +214,7 @@
 [/for]
 </div>
 
+[comment function to add/remove task rules to be displayed based on menu option select/]
 <script>
 function filterTaskRules() {
     const filter = document.getElementById('filter').value;
@@ -227,6 +233,7 @@ function filterTaskRules() {
 </script>
 [/template]
 
+[comment template to extract the shift from an expression, recursively iterates through compound expression/]
 [template public extractShift(anExpression : Expression)]
 [if (anExpression.oclIsTypeOf(ShiftExpression))][anExpression.oclAsType(ShiftExpression).shift.toString().trim()/]
 [elseif (anExpression.oclIsTypeOf(CompoundExpression))][extractShift(anExpression.oclAsType(CompoundExpression).LHS)/][extractShift(anExpression.oclAsType(CompoundExpression).RHS)/]
