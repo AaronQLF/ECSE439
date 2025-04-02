@@ -1,84 +1,222 @@
-
-<p>Task Rules:</p>
-<select name="filter" id="filter" onchange="filterTaskRules()">
-	<option value="ALL">All</option>
-    <option value="SENIOR">Senior</option>
-    <option value="JUNIOR">Junior</option>
-    <option value="TRAINEE">Trainee</option>
-    <option value="DAYSHIFT">Day Shift</option>
-    <option value="EVENINGSHIFT">Evening Shift</option>
-    <option value="NIGHTSHIFT">Night Shift</option>
-</select>
-
-<div id="taskRules">
-    <div class="taskRule" 
-         data-result="SENIOR" 
-         data-shift="">
-        IF >= 200 min
-        
-         THEN SENIOR
-    </div>
-    <div class="taskRule" 
-         data-result="JUNIOR" 
-         data-shift="">
-        IF (> 100 min
-        
-         OR MODERATE
-         )
-         THEN JUNIOR
-    </div>
-    <div class="taskRule" 
-         data-result="TRAINEE" 
-         data-shift="DAYSHIFT">
-        IF (EASY
-         AND (< 100 min
-         
-          OR DAYSHIFT
-          )
-         )
-         THEN TRAINEE
-    </div>
-    <div class="taskRule" 
-         data-result="JUNIOR" 
-         data-shift="DAYSHIFT">
-        IF (((EASY
-         AND >= 100 min
-         
-         )
-         OR ((MODERATE
-          AND > 90 min
-          
-          )
-          AND (MODERATE
-           AND < 180 min
-           
-           )
-          )
-         )
-         OR (HARD
-          AND DAYSHIFT
-          )
-         )
-         THEN JUNIOR
-    </div>
-</div>
-
-<script>
-function filterTaskRules() {
-    const filter = document.getElementById('filter').value;
-	console.log('Selected filter:', filter);
-    const taskRules = document.querySelectorAll('.taskRule');
-    taskRules.forEach(rule => {
-        const result = rule.getAttribute('data-result');
-        const shift = rule.getAttribute('data-shift');
-        if (filter === "ALL" ||result === filter || shift === filter) {
-            rule.style.display = 'block';
-        } else {
-            rule.style.display = 'none';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Planning System</title>
+    <style>
+	        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #121212;
+            color: #e0e0e0;
         }
-    });
-}
-</script>
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #1e1e1e;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #bb86fc;
+        }
+        #taskRules {
+            margin-top: 15px;
+        }
+        .taskRule {
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #2d2d2d;
+            border-left: 3px solid #03dac6;
+        }
+        .worker, .task {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px;
+            background-color: #2c2c2c;
+            border-radius: 4px;
+            border: 1px solid #444;
+        }
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #444;
+            margin-bottom: 10px;
+            background-color: #333;
+            color: #e0e0e0;
+        }
+        .assignment {
+            margin-top: 8px;
+            padding: 5px;
+            background-color: #263238;
+        }
+        .assignment-results {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #252525;
+            border: 1px solid #444;
+            border-radius: 4px;
+        }
+        .assignment-results ul {
+            padding-left: 20px;
+            color: #e0e0e0;
+        }
+        h1 {
+            color: #03dac6;
+            border-bottom: 2px solid #03dac6;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #cf6679;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task Planning System</h1>
 
-<p>Task Assignment:</p>
-	
+    <!-- Workers and Tasks Section -->
+    <div class="section">
+        <div class="section-title">Workers</div>
+        <div id="workers">
+                <div class="worker">
+                    <strong style="color: #bb86fc;">Name: John Doe</strong> 
+                    <span style="color: #03dac6;">Seniority: (SENIOR) </span>
+					<span style="color: #03dac6;">Employee Number: (1) </span>
+					<span style="color: #03dac6;">Active: true</span>
+                </div>
+                <div class="worker">
+                    <strong style="color: #bb86fc;">Name: Jane Smith</strong> 
+                    <span style="color: #03dac6;">Seniority: (JUNIOR) </span>
+					<span style="color: #03dac6;">Employee Number: (2) </span>
+					<span style="color: #03dac6;">Active: true</span>
+                </div>
+                <div class="worker">
+                    <strong style="color: #bb86fc;">Name: Alice Johnson</strong> 
+                    <span style="color: #03dac6;">Seniority: (TRAINEE) </span>
+					<span style="color: #03dac6;">Employee Number: (3) </span>
+					<span style="color: #03dac6;">Active: true</span>
+                </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Tasks</div>
+        <div id="tasks">
+                <div class="task">
+                    <strong style="color: #bb86fc;">t1</strong> - 
+                    <span style="color: #cf6679;">Difficulty: EASY</span>, 
+                    <span style="color: #03dac6;">Duration: 120 min</span>
+					<span style="color: #03dac6;">StartTime: Wed Apr 02 07:00:00 EDT 2025</span>
+                </div>
+                <div class="task">
+                    <strong style="color: #bb86fc;">t2</strong> - 
+                    <span style="color: #cf6679;">Difficulty: MODERATE</span>, 
+                    <span style="color: #03dac6;">Duration: 90 min</span>
+					<span style="color: #03dac6;">StartTime: Wed Apr 02 10:00:00 EDT 2025</span>
+                </div>
+                <div class="task">
+                    <strong style="color: #bb86fc;">t3</strong> - 
+                    <span style="color: #cf6679;">Difficulty: HARD</span>, 
+                    <span style="color: #03dac6;">Duration: 60 min</span>
+					<span style="color: #03dac6;">StartTime: Wed Apr 02 12:00:00 EDT 2025</span>
+                </div>
+        </div>
+    </div>
+
+    <!-- Task Rules Section -->
+    <div class="section">
+        <div class="section-title">Task Rules</div>
+        <label for="filter" style="color: #bb86fc; margin-right: 10px;">Filter Rules:</label>
+        <select name="filter" id="filter" onchange="filterTaskRules()">
+        	<option value="ALL">All</option>
+            <option value="SENIOR">Senior</option>
+            <option value="JUNIOR">Junior</option>
+            <option value="TRAINEE">Trainee</option>
+            <option value="DAYSHIFT">Day Shift</option>
+            <option value="EVENINGSHIFT">Evening Shift</option>
+            <option value="NIGHTSHIFT">Night Shift</option>
+        </select>
+        
+        <div id="taskRules">
+            <div class="taskRule" 
+                 data-result="SENIOR" 
+                 data-shift="">
+                <span style="color: #03dac6;">IF</span> <span style="color: #e0e0e0;">(>= 150 min
+                
+                 AND HARD
+                 )
+                </span> 
+                <span style="color: #03dac6;">THEN</span> <span style="color: #cf6679;">SENIOR</span>
+            </div>
+            <div class="taskRule" 
+                 data-result="JUNIOR" 
+                 data-shift="DAYSHIFT">
+                <span style="color: #03dac6;">IF</span> <span style="color: #e0e0e0;">(DAYSHIFT
+                 AND ((> 120 min
+                 
+                  OR < 60 min
+                  
+                  )
+                  AND (MODERATE
+                   OR HARD
+                   )
+                  )
+                 )
+                </span> 
+                <span style="color: #03dac6;">THEN</span> <span style="color: #cf6679;">JUNIOR</span>
+            </div>
+            <div class="taskRule" 
+                 data-result="TRAINEE" 
+                 data-shift="DAYSHIFT
+                 
+                 
+                 EVENINGSHIFT">
+                <span style="color: #03dac6;">IF</span> <span style="color: #e0e0e0;">((DAYSHIFT
+                 AND (< 120 min
+                 
+                  AND EASY
+                  )
+                 )
+                 OR (EVENINGSHIFT
+                  AND (< 60 min
+                  
+                   AND MODERATE
+                   )
+                  )
+                 )
+                </span> 
+                <span style="color: #03dac6;">THEN</span> <span style="color: #cf6679;">TRAINEE</span>
+            </div>
+        </div>
+        
+        <script>
+        function filterTaskRules() {
+            const filter = document.getElementById('filter').value;
+            console.log('Selected filter:', filter);
+            const taskRules = document.querySelectorAll('.taskRule');
+            taskRules.forEach(rule => {
+                const result = rule.getAttribute('data-result');
+                const shift = rule.getAttribute('data-shift');
+                if (filter === "ALL" || result === filter || shift === filter) {
+                    rule.style.display = 'block';
+                } else {
+                    rule.style.display = 'none';
+                }
+            });
+        }
+        </script>
+    </div>
+
+    <!-- Task Assignment Section -->
+    <div class="section">
+        <div class="section-title">Task Assignment</div>
+        <div class='assignment-results'><h3>Task Assignment Results</h3><ul><li><strong>Junior Worker</strong>: <ul><li>Task 2 (Medium priority)</li><li>Task 5 (Low priority)</li></ul></li><li><strong>Trainee</strong>: <ul><li>Task 4 (Low priority)</li></ul></li><li><strong>Senior Worker</strong>: <ul><li>Task 1 (High priority)</li><li>Task 3 (Medium priority)</li></ul></li></ul></div>
+    </div>
+</body>
+</html>

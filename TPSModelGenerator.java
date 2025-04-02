@@ -1,5 +1,8 @@
 package tps.modelgeneration;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
@@ -90,9 +93,9 @@ public class TPSModelGenerator {
 			tps.getWorkers().add(w1);
 			tps.getWorkers().add(w2);
 			tps.getWorkers().add(w3);
-			Task t1 = createTask("t1", 120, DifficultyLevel.EASY, new Date());
-			Task t2 = createTask("t2", 90, DifficultyLevel.MODERATE, new Date());
-			Task t3 = createTask("t3", 60, DifficultyLevel.HARD, new Date());
+		    Task t1 = createTask("t1", 120, DifficultyLevel.EASY, Date.from(LocalTime.of(7, 0).atDate(LocalDate.now()).atZone(ZoneId.systemDefault()).toInstant()));
+			Task t2 = createTask("t2", 90, DifficultyLevel.MODERATE, Date.from(LocalTime.of(10, 0).atDate(LocalDate.now()).atZone(ZoneId.systemDefault()).toInstant()));
+			Task t3 = createTask("t3", 60, DifficultyLevel.HARD, Date.from(LocalTime.of(12, 0).atDate(LocalDate.now()).atZone(ZoneId.systemDefault()).toInstant()));
 			tps.getTasks().add(t1);
 			tps.getTasks().add(t2);
 			tps.getTasks().add(t3);
@@ -147,7 +150,7 @@ public class TPSModelGenerator {
 		t.setID(id);
 		t.setDuration(duration);
 		t.setDifficultyLevel(level);
-		t.setStartTime(null);
+		t.setStartTime(startTime);
 		return t;
 	}
 	
